@@ -1,0 +1,460 @@
+running on cuda:0
+HetDDI(
+  (kg): HGNN(
+    (dropout): Dropout(p=0.2, inplace=False)
+    (node_embedding): Embedding(97244, 300)
+    (gat_layers): ModuleList(
+      (0): HetConv(
+        (edge_embedding): Embedding(108, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (1): HetConv(
+        (edge_embedding): Embedding(108, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (2): HetConv(
+        (edge_embedding): Embedding(108, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+    )
+  )
+  (kg_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (mol): Mol(
+    (readout): AvgPooling()
+    (gnn): HGNN(
+      (dropout): Dropout(p=0.2, inplace=False)
+      (node_embedding): Embedding(47601, 300)
+      (gat_layers): ModuleList(
+        (0): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (1): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (2): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+      )
+    )
+  )
+  (mol_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (decoder): Mlp(
+    (fc_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=1200, bias=True)
+      (1): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=1200, out_features=1200, bias=True)
+      (5): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Dropout(p=0.5, inplace=False)
+      (8): Linear(in_features=1200, out_features=1200, bias=True)
+      (9): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (10): ReLU()
+      (11): Dropout(p=0.5, inplace=False)
+    )
+    (output_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=1, bias=False)
+    )
+  )
+)
+fold:0 epoch:0 step:0 train loss:0.723639, train acc:50.928, train f1:49.627, train precision:50.834, train recall:48.476, train auc:51.141
+fold:0 epoch:0 step:1 train loss:1.026632, train acc:58.633, train f1:49.009, train precision:63.514, train recall:39.897, train auc:62.430
+fold:0 epoch:0 step:2 train loss:0.731213, train acc:54.578, train f1:61.606, train precision:53.458, train recall:72.682, train auc:58.296
+fold:0 epoch:0 step:3 train loss:0.649734, train acc:63.470, train f1:68.172, train precision:60.087, train recall:78.770, train auc:70.011
+fold:0 epoch:0 step:4 train loss:0.612927, train acc:69.128, train f1:70.519, train precision:67.698, train recall:73.586, train auc:76.011
+fold:0 epoch:0 step:5 train loss:0.573849, train acc:70.853, train f1:70.657, train precision:70.373, train recall:70.942, train auc:77.538
+fold:0 epoch:0 step:6 train loss:0.569832, train acc:70.624, train f1:68.433, train precision:74.428, train recall:63.332, train auc:78.306
+fold:0 epoch:0 step:7 train loss:0.541777, train acc:73.508, train f1:71.799, train precision:77.107, train recall:67.175, train auc:81.133
+fold:0 epoch:0 step:8 train loss:0.532773, train acc:75.146, train f1:74.699, train precision:76.359, train recall:73.109, train auc:82.480
+fold:0 epoch:0 step:9 train loss:0.507526, train acc:76.807, train f1:77.135, train precision:76.915, train recall:77.357, train auc:83.907
+fold:0 epoch:0        valid loss:0.544959, valid acc:75.554, valid f1:73.220, valid precision:80.950, valid recall:66.838, valid auc:83.939
+None
+====================================================================================================
+fold:0 epoch:1 step:0 train loss:0.498086, train acc:77.203, train f1:77.784, train precision:76.420, train recall:79.197, train auc:84.171
+fold:0 epoch:1 step:1 train loss:0.501594, train acc:76.791, train f1:77.257, train precision:75.450, train recall:79.153, train auc:83.633
+fold:0 epoch:1 step:2 train loss:0.486704, train acc:77.722, train f1:77.995, train precision:77.056, train recall:78.956, train auc:84.773
+fold:0 epoch:1 step:3 train loss:0.478323, train acc:78.333, train f1:78.381, train precision:78.172, train recall:78.592, train auc:85.427
+fold:0 epoch:1 step:4 train loss:0.472795, train acc:79.013, train f1:79.156, train precision:78.705, train recall:79.612, train auc:85.813
+fold:0 epoch:1 step:5 train loss:0.474365, train acc:78.732, train f1:79.122, train precision:78.095, train recall:80.176, train auc:85.857
+fold:0 epoch:1 step:6 train loss:0.474546, train acc:78.537, train f1:78.790, train precision:77.122, train recall:80.531, train auc:85.917
+fold:0 epoch:1 step:7 train loss:0.469103, train acc:78.915, train f1:79.338, train precision:77.951, train recall:80.776, train auc:86.021
+fold:0 epoch:1 step:8 train loss:0.463722, train acc:78.998, train f1:79.306, train precision:77.896, train recall:80.768, train auc:86.238
+fold:0 epoch:1 step:9 train loss:0.465659, train acc:78.681, train f1:79.006, train precision:78.099, train recall:79.933, train auc:86.109
+fold:0 epoch:1        valid loss:0.604331, valid acc:68.738, valid f1:57.818, valid precision:88.858, valid recall:42.850, valid auc:86.126
+None
+====================================================================================================
+fold:0 epoch:2 step:0 train loss:0.459146, train acc:79.126, train f1:79.268, train precision:78.145, train recall:80.423, train auc:86.592
+fold:0 epoch:2 step:1 train loss:0.448021, train acc:80.133, train f1:80.336, train precision:79.353, train recall:81.343, train auc:87.318
+fold:0 epoch:2 step:2 train loss:0.447534, train acc:79.645, train f1:80.101, train precision:78.734, train recall:81.517, train auc:87.230
+fold:0 epoch:2 step:3 train loss:0.442186, train acc:79.733, train f1:80.292, train precision:78.246, train recall:82.448, train auc:87.501
+fold:0 epoch:2 step:4 train loss:0.444443, train acc:79.697, train f1:80.502, train precision:77.335, train recall:83.938, train auc:87.425
+fold:0 epoch:2 step:5 train loss:0.434920, train acc:80.243, train f1:81.145, train precision:77.836, train recall:84.749, train auc:87.963
+fold:0 epoch:2 step:6 train loss:0.435426, train acc:80.243, train f1:81.122, train precision:77.966, train recall:84.544, train auc:87.971
+fold:0 epoch:2 step:7 train loss:0.438531, train acc:80.258, train f1:81.012, train precision:78.347, train recall:83.865, train auc:87.798
+fold:0 epoch:2 step:8 train loss:0.437426, train acc:79.852, train f1:80.397, train precision:78.155, train recall:82.771, train auc:87.783
+fold:0 epoch:2 step:9 train loss:0.427270, train acc:80.273, train f1:80.599, train precision:78.066, train recall:83.301, train auc:88.305
+fold:0 epoch:2        valid loss:0.994026, valid acc:59.338, valid f1:33.525, valid precision:91.803, valid recall:20.507, valid auc:85.882
+None
+====================================================================================================
+fold:0 epoch:3 step:0 train loss:0.422722, train acc:80.743, train f1:81.027, train precision:79.704, train recall:82.395, train auc:88.647
+fold:0 epoch:3 step:1 train loss:0.426107, train acc:80.481, train f1:80.784, train precision:79.805, train recall:81.786, train auc:88.430
+fold:0 epoch:3 step:2 train loss:0.420896, train acc:80.661, train f1:81.002, train precision:79.560, train recall:82.499, train auc:88.703
+fold:0 epoch:3 step:3 train loss:0.416983, train acc:81.039, train f1:81.660, train precision:79.076, train recall:84.419, train auc:88.887
+fold:0 epoch:3 step:4 train loss:0.414442, train acc:81.201, train f1:81.953, train precision:78.231, train recall:86.047, train auc:89.054
+fold:0 epoch:3 step:5 train loss:0.410269, train acc:81.375, train f1:82.070, train precision:78.488, train recall:85.993, train auc:89.253
+fold:0 epoch:3 step:6 train loss:0.404145, train acc:81.662, train f1:82.352, train precision:79.809, train recall:85.062, train auc:89.597
+fold:0 epoch:3 step:7 train loss:0.414411, train acc:81.100, train f1:81.709, train precision:79.114, train recall:84.481, train auc:89.033
+fold:0 epoch:3 step:8 train loss:0.402297, train acc:81.906, train f1:82.432, train precision:80.741, train recall:84.196, train auc:89.715
+fold:0 epoch:3 step:9 train loss:0.396167, train acc:82.111, train f1:82.719, train precision:80.396, train recall:85.179, train auc:89.886
+fold:0 epoch:3        valid loss:0.961895, valid acc:56.715, valid f1:25.318, valid precision:92.189, valid recall:14.674, valid auc:85.850
+None
+====================================================================================================
+fold:0 epoch:4 step:0 train loss:0.401488, train acc:81.662, train f1:82.349, train precision:79.331, train recall:85.605, train auc:89.707
+fold:0 epoch:4 step:1 train loss:0.399184, train acc:82.126, train f1:82.888, train precision:80.168, train recall:85.798, train auc:89.833
+fold:0 epoch:4 step:2 train loss:0.400712, train acc:81.894, train f1:82.556, train precision:79.753, train recall:85.562, train auc:89.712
+fold:0 epoch:4 step:3 train loss:0.392939, train acc:82.349, train f1:83.026, train precision:79.786, train recall:86.541, train auc:90.147
+fold:0 epoch:4 step:4 train loss:0.386691, train acc:82.767, train f1:83.358, train precision:80.610, train recall:86.301, train auc:90.430
+fold:0 epoch:4 step:5 train loss:0.389642, train acc:82.251, train f1:82.780, train precision:79.821, train recall:85.966, train auc:90.247
+fold:0 epoch:4 step:6 train loss:0.385563, train acc:82.758, train f1:83.335, train precision:80.781, train recall:86.056, train auc:90.466
+fold:0 epoch:4 step:7 train loss:0.388784, train acc:82.169, train f1:82.734, train precision:80.187, train recall:85.448, train auc:90.276
+fold:0 epoch:4 step:8 train loss:0.387336, train acc:82.568, train f1:83.075, train precision:80.503, train recall:85.816, train auc:90.354
+fold:0 epoch:4 step:9 train loss:0.376242, train acc:83.201, train f1:83.835, train precision:80.945, train recall:86.940, train auc:90.900
+fold:0 epoch:4        valid loss:0.685048, valid acc:63.572, valid f1:45.932, valid precision:89.056, valid recall:30.947, valid auc:85.859
+None
+====================================================================================================
+fold:0 epoch:5 step:0 train loss:0.380077, train acc:82.809, train f1:83.497, train precision:80.641, train recall:86.563, train auc:90.650
+fold:0 epoch:5 step:1 train loss:0.374119, train acc:83.209, train f1:84.048, train precision:80.336, train recall:88.121, train auc:91.009
+fold:0 epoch:5 step:2 train loss:0.371451, train acc:83.609, train f1:84.450, train precision:80.509, train recall:88.798, train auc:91.165
+fold:0 epoch:5 step:3 train loss:0.374981, train acc:83.173, train f1:83.943, train precision:79.555, train recall:88.843, train auc:90.994
+fold:0 epoch:5 step:4 train loss:0.369617, train acc:83.411, train f1:84.133, train precision:80.245, train recall:88.417, train auc:91.163
+fold:0 epoch:5 step:5 train loss:0.370263, train acc:83.279, train f1:84.024, train precision:81.286, train recall:86.952, train auc:91.153
+fold:0 epoch:5 step:6 train loss:0.367513, train acc:83.630, train f1:84.368, train precision:81.641, train recall:87.283, train auc:91.381
+fold:0 epoch:5 step:7 train loss:0.368939, train acc:83.481, train f1:84.204, train precision:80.071, train recall:88.788, train auc:91.257
+fold:0 epoch:5 step:8 train loss:0.360922, train acc:83.746, train f1:84.358, train precision:80.163, train recall:89.017, train auc:91.645
+fold:0 epoch:5 step:9 train loss:0.368464, train acc:83.500, train f1:84.330, train precision:81.053, train recall:87.883, train auc:91.258
+fold:0 epoch:5        valid loss:0.516710, valid acc:74.627, valid f1:70.716, valid precision:83.602, valid recall:61.272, valid auc:86.614
+None
+====================================================================================================
+fold:0 epoch:6 step:0 train loss:0.346906, train acc:84.729, train f1:85.516, train precision:82.039, train recall:89.300, train auc:92.280
+fold:0 epoch:6 step:1 train loss:0.347577, train acc:84.607, train f1:85.193, train precision:81.509, train recall:89.227, train auc:92.282
+fold:0 epoch:6 step:2 train loss:0.350407, train acc:84.473, train f1:85.062, train precision:81.786, train recall:88.610, train auc:92.118
+fold:0 epoch:6 step:3 train loss:0.345238, train acc:84.830, train f1:85.415, train precision:81.872, train recall:89.279, train auc:92.395
+fold:0 epoch:6 step:4 train loss:0.338838, train acc:85.117, train f1:85.783, train precision:82.330, train recall:89.539, train auc:92.697
+fold:0 epoch:6 step:5 train loss:0.335495, train acc:85.297, train f1:85.903, train precision:82.016, train recall:90.178, train auc:92.822
+fold:0 epoch:6 step:6 train loss:0.335673, train acc:85.059, train f1:85.635, train precision:82.233, train recall:89.330, train auc:92.814
+fold:0 epoch:6 step:7 train loss:0.331217, train acc:85.376, train f1:85.940, train precision:83.462, train recall:88.570, train auc:93.054
+fold:0 epoch:6 step:8 train loss:0.334543, train acc:85.275, train f1:85.727, train precision:83.180, train recall:88.435, train auc:92.874
+fold:0 epoch:6 step:9 train loss:0.324980, train acc:85.787, train f1:86.256, train precision:83.929, train recall:88.716, train auc:93.312
+fold:0 epoch:6        valid loss:0.514632, valid acc:74.819, valid f1:69.205, valid precision:89.061, valid recall:56.589, valid auc:88.894
+None
+====================================================================================================
+fold:0 epoch:7 step:0 train loss:0.319073, train acc:86.029, train f1:86.492, train precision:84.057, train recall:89.073, train auc:93.574
+fold:0 epoch:7 step:1 train loss:0.316068, train acc:86.368, train f1:86.873, train precision:84.055, train recall:89.887, train auc:93.612
+fold:0 epoch:7 step:2 train loss:0.312855, train acc:86.438, train f1:86.804, train precision:83.731, train recall:90.112, train auc:93.796
+fold:0 epoch:7 step:3 train loss:0.311537, train acc:86.588, train f1:86.955, train precision:84.078, train recall:90.036, train auc:93.818
+fold:0 epoch:7 step:4 train loss:0.302433, train acc:87.280, train f1:87.559, train precision:85.557, train recall:89.657, train auc:94.210
+fold:0 epoch:7 step:5 train loss:0.307843, train acc:86.536, train f1:86.881, train precision:84.916, train recall:88.938, train auc:93.982
+fold:0 epoch:7 step:6 train loss:0.308100, train acc:86.777, train f1:87.161, train precision:85.145, train recall:89.275, train auc:94.002
+fold:0 epoch:7 step:7 train loss:0.299403, train acc:87.195, train f1:87.594, train precision:84.956, train recall:90.400, train auc:94.319
+fold:0 epoch:7 step:8 train loss:0.298238, train acc:87.082, train f1:87.536, train precision:84.777, train recall:90.480, train auc:94.376
+fold:0 epoch:7 step:9 train loss:0.300530, train acc:87.353, train f1:87.703, train precision:85.239, train recall:90.313, train auc:94.278
+fold:0 epoch:7        valid loss:0.403989, valid acc:80.831, valid f1:78.228, valid precision:90.519, valid recall:68.876, valid auc:92.720
+None
+====================================================================================================
+fold:0 epoch:8 step:0 train loss:0.289566, train acc:87.512, train f1:87.799, train precision:85.006, train recall:90.782, train auc:94.737
+fold:0 epoch:8 step:1 train loss:0.288820, train acc:87.680, train f1:87.977, train precision:85.499, train recall:90.602, train auc:94.709
+fold:0 epoch:8 step:2 train loss:0.285526, train acc:87.714, train f1:87.942, train precision:85.944, train recall:90.034, train auc:94.856
+fold:0 epoch:8 step:3 train loss:0.288576, train acc:87.756, train f1:88.104, train precision:85.849, train recall:90.481, train auc:94.725
+fold:0 epoch:8 step:4 train loss:0.283706, train acc:87.845, train f1:88.194, train precision:85.717, train recall:90.819, train auc:94.910
+fold:0 epoch:8 step:5 train loss:0.282776, train acc:88.013, train f1:88.405, train precision:86.305, train recall:90.609, train auc:94.911
+fold:0 epoch:8 step:6 train loss:0.283184, train acc:87.811, train f1:88.208, train precision:85.900, train recall:90.643, train auc:94.957
+fold:0 epoch:8 step:7 train loss:0.278835, train acc:88.174, train f1:88.568, train precision:86.111, train recall:91.169, train auc:95.051
+fold:0 epoch:8 step:8 train loss:0.273948, train acc:88.089, train f1:88.422, train precision:86.021, train recall:90.961, train auc:95.278
+fold:0 epoch:8 step:9 train loss:0.272851, train acc:88.426, train f1:88.733, train precision:86.065, train recall:91.571, train auc:95.238
+fold:0 epoch:8        valid loss:0.322112, valid acc:85.395, valid f1:84.254, valid precision:91.395, valid recall:78.148, valid auc:95.108
+None
+====================================================================================================
+fold:0 epoch:9 step:0 train loss:0.280561, train acc:87.924, train f1:88.210, train precision:86.249, train recall:90.262, train auc:95.032
+fold:0 epoch:9 step:1 train loss:0.267518, train acc:88.394, train f1:88.709, train precision:86.333, train recall:91.220, train auc:95.465
+fold:0 epoch:9 step:2 train loss:0.269144, train acc:88.397, train f1:88.762, train precision:86.348, train recall:91.315, train auc:95.389
+fold:0 epoch:9 step:3 train loss:0.269432, train acc:88.574, train f1:88.889, train precision:85.758, train recall:92.257, train auc:95.414
+fold:0 epoch:9 step:4 train loss:0.266447, train acc:88.574, train f1:88.938, train precision:86.460, train recall:91.562, train auc:95.506
+fold:0 epoch:9 step:5 train loss:0.268332, train acc:88.477, train f1:88.888, train precision:86.455, train recall:91.461, train auc:95.461
+fold:0 epoch:9 step:6 train loss:0.271595, train acc:88.269, train f1:88.606, train precision:85.809, train recall:91.593, train auc:95.321
+fold:0 epoch:9 step:7 train loss:0.264329, train acc:88.705, train f1:88.948, train precision:86.181, train recall:91.898, train auc:95.552
+fold:0 epoch:9 step:8 train loss:0.263772, train acc:88.712, train f1:88.997, train precision:87.022, train recall:91.064, train auc:95.599
+fold:0 epoch:9 step:9 train loss:0.249874, train acc:89.349, train f1:89.702, train precision:88.283, train recall:91.167, train auc:96.048
+fold:0 epoch:9        valid loss:0.309895, valid acc:86.141, valid f1:85.209, valid precision:91.351, valid recall:79.841, valid auc:95.465
+None
+====================================================================================================
+fold:0 epoch:10 step:0 train loss:0.263597, train acc:88.721, train f1:89.033, train precision:86.254, train recall:91.998, train auc:95.606
+fold:0 epoch:10 step:1 train loss:0.257396, train acc:89.078, train f1:89.532, train precision:87.129, train recall:92.072, train auc:95.788
+fold:0 epoch:10 step:2 train loss:0.256109, train acc:88.977, train f1:89.356, train precision:85.884, train recall:93.121, train auc:95.820
+fold:0 epoch:10 step:3 train loss:0.256348, train acc:88.953, train f1:89.325, train precision:86.554, train recall:92.281, train auc:95.827
+fold:0 epoch:10 step:4 train loss:0.255935, train acc:89.069, train f1:89.415, train precision:87.164, train recall:91.785, train auc:95.846
+fold:0 epoch:10 step:5 train loss:0.251283, train acc:88.919, train f1:89.203, train precision:86.625, train recall:91.940, train auc:95.997
+fold:0 epoch:10 step:6 train loss:0.252646, train acc:89.108, train f1:89.313, train precision:86.482, train recall:92.335, train auc:95.949
+fold:0 epoch:10 step:7 train loss:0.252803, train acc:89.130, train f1:89.345, train precision:87.333, train recall:91.451, train auc:95.943
+fold:0 epoch:10 step:8 train loss:0.254444, train acc:89.078, train f1:89.390, train precision:87.509, train recall:91.353, train auc:95.895
+fold:0 epoch:10 step:9 train loss:0.259690, train acc:88.637, train f1:89.047, train precision:86.609, train recall:91.626, train auc:95.670
+fold:0 epoch:10        valid loss:0.285629, valid acc:87.419, valid f1:86.951, valid precision:90.314, valid recall:83.829, valid auc:95.683
+None
+====================================================================================================
+fold:0 epoch:11 step:0 train loss:0.245716, train acc:89.371, train f1:89.773, train precision:86.991, train recall:92.738, train auc:96.169
+fold:0 epoch:11 step:1 train loss:0.252726, train acc:88.962, train f1:89.366, train precision:86.303, train recall:92.654, train auc:95.959
+fold:0 epoch:11 step:2 train loss:0.242412, train acc:89.697, train f1:89.931, train precision:87.114, train recall:92.936, train auc:96.294
+fold:0 epoch:11 step:3 train loss:0.248878, train acc:89.221, train f1:89.456, train precision:87.242, train recall:91.785, train auc:96.079
+fold:0 epoch:11 step:4 train loss:0.247359, train acc:89.310, train f1:89.535, train precision:87.346, train recall:91.837, train auc:96.142
+fold:0 epoch:11 step:5 train loss:0.239139, train acc:89.520, train f1:89.767, train precision:87.753, train recall:91.875, train auc:96.370
+fold:0 epoch:11 step:6 train loss:0.241551, train acc:89.514, train f1:89.785, train precision:87.324, train recall:92.389, train auc:96.248
+fold:0 epoch:11 step:7 train loss:0.245064, train acc:89.487, train f1:89.874, train precision:87.656, train recall:92.208, train auc:96.164
+fold:0 epoch:11 step:8 train loss:0.244097, train acc:89.310, train f1:89.620, train precision:86.833, train recall:92.591, train auc:96.226
+fold:0 epoch:11 step:9 train loss:0.246511, train acc:89.182, train f1:89.559, train precision:87.306, train recall:91.931, train auc:96.149
+fold:0 epoch:11        valid loss:0.259657, valid acc:88.573, valid f1:88.256, valid precision:90.773, valid recall:85.874, valid auc:96.287
+None
+====================================================================================================
+fold:0 epoch:12 step:0 train loss:0.236417, train acc:89.771, train f1:90.097, train precision:87.577, train recall:92.766, train auc:96.464
+fold:0 epoch:12 step:1 train loss:0.231011, train acc:90.051, train f1:90.334, train precision:87.527, train recall:93.328, train auc:96.636
+fold:0 epoch:12 step:2 train loss:0.236019, train acc:89.655, train f1:89.976, train precision:87.097, train recall:93.052, train auc:96.493
+fold:0 epoch:12 step:3 train loss:0.240043, train acc:89.655, train f1:89.995, train precision:87.425, train recall:92.721, train auc:96.323
+fold:0 epoch:12 step:4 train loss:0.231158, train acc:90.091, train f1:90.377, train precision:87.879, train recall:93.021, train auc:96.586
+fold:0 epoch:12 step:5 train loss:0.233587, train acc:89.868, train f1:90.072, train precision:87.839, train recall:92.421, train auc:96.528
+fold:0 epoch:12 step:6 train loss:0.237463, train acc:89.716, train f1:89.949, train precision:88.669, train recall:91.267, train auc:96.456
+fold:0 epoch:12 step:7 train loss:0.234852, train acc:89.828, train f1:90.062, train precision:87.926, train recall:92.305, train auc:96.495
+fold:0 epoch:12 step:8 train loss:0.237118, train acc:89.676, train f1:89.968, train precision:87.581, train recall:92.488, train auc:96.407
+fold:0 epoch:12 step:9 train loss:0.231850, train acc:90.062, train f1:90.302, train precision:87.132, train recall:93.712, train auc:96.603
+fold:0 epoch:12        valid loss:0.238020, valid acc:89.869, valid f1:89.843, valid precision:90.080, valid recall:89.607, valid auc:96.747
+None
+====================================================================================================
+fold:0 epoch:13 step:0 train loss:0.224689, train acc:90.216, train f1:90.496, train precision:87.764, train recall:93.404, train auc:96.796
+fold:0 epoch:13 step:1 train loss:0.231186, train acc:89.960, train f1:90.186, train precision:87.346, train recall:93.217, train auc:96.604
+fold:0 epoch:13 step:2 train loss:0.226004, train acc:90.231, train f1:90.435, train precision:88.162, train recall:92.829, train auc:96.754
+fold:0 epoch:13 step:3 train loss:0.224343, train acc:90.363, train f1:90.607, train precision:88.086, train recall:93.276, train auc:96.809
+fold:0 epoch:13 step:4 train loss:0.226242, train acc:89.932, train f1:90.216, train precision:88.286, train recall:92.232, train auc:96.775
+fold:0 epoch:13 step:5 train loss:0.228251, train acc:89.938, train f1:90.214, train precision:88.058, train recall:92.479, train auc:96.698
+fold:0 epoch:13 step:6 train loss:0.224915, train acc:90.240, train f1:90.499, train precision:88.173, train recall:92.951, train auc:96.810
+fold:0 epoch:13 step:7 train loss:0.220699, train acc:90.604, train f1:90.893, train precision:88.954, train recall:92.919, train auc:96.941
+fold:0 epoch:13 step:8 train loss:0.221096, train acc:90.268, train f1:90.535, train precision:88.253, train recall:92.937, train auc:96.889
+fold:0 epoch:13 step:9 train loss:0.211830, train acc:90.660, train f1:90.951, train precision:88.346, train recall:93.714, train auc:97.172
+fold:0 epoch:13        valid loss:0.229781, valid acc:90.112, valid f1:90.049, valid precision:90.627, valid recall:89.479, valid auc:96.968
+None
+====================================================================================================
+fold:0 epoch:14 step:0 train loss:0.218234, train acc:90.344, train f1:90.717, train precision:87.935, train recall:93.680, train auc:96.986
+fold:0 epoch:14 step:1 train loss:0.214949, train acc:90.652, train f1:90.972, train precision:87.872, train recall:94.299, train auc:97.095
+fold:0 epoch:14 step:2 train loss:0.214815, train acc:90.683, train f1:90.969, train precision:88.587, train recall:93.483, train auc:97.075
+fold:0 epoch:14 step:3 train loss:0.217319, train acc:90.244, train f1:90.401, train precision:88.898, train recall:91.955, train auc:97.013
+fold:0 epoch:14 step:4 train loss:0.215898, train acc:90.567, train f1:90.723, train precision:89.216, train recall:92.282, train auc:97.040
+fold:0 epoch:14 step:5 train loss:0.219659, train acc:90.619, train f1:90.799, train precision:89.009, train recall:92.663, train auc:96.943
+fold:0 epoch:14 step:6 train loss:0.215525, train acc:90.790, train f1:91.047, train precision:88.998, train recall:93.192, train auc:97.061
+fold:0 epoch:14 step:7 train loss:0.210158, train acc:90.729, train f1:90.993, train precision:88.322, train recall:93.830, train auc:97.198
+fold:0 epoch:14 step:8 train loss:0.208468, train acc:90.918, train f1:91.136, train precision:88.388, train recall:94.061, train auc:97.274
+fold:0 epoch:14 step:9 train loss:0.210416, train acc:91.029, train f1:91.217, train precision:88.386, train recall:94.236, train auc:97.242
+fold:0 epoch:14        valid loss:0.210150, valid acc:91.179, valid f1:91.349, valid precision:89.629, valid recall:93.136, valid auc:97.337
+None
+====================================================================================================
+fold:0 epoch:15 step:0 train loss:0.205669, train acc:91.132, train f1:91.310, train precision:89.432, train recall:93.268, train auc:97.332
+fold:0 epoch:15 step:1 train loss:0.209272, train acc:90.900, train f1:91.077, train precision:89.418, train recall:92.799, train auc:97.226
+fold:0 epoch:15 step:2 train loss:0.211348, train acc:90.829, train f1:91.043, train precision:89.165, train recall:93.003, train auc:97.171
+fold:0 epoch:15 step:3 train loss:0.206350, train acc:90.924, train f1:91.079, train precision:89.569, train recall:92.641, train auc:97.317
+fold:0 epoch:15 step:4 train loss:0.204010, train acc:91.113, train f1:91.299, train precision:89.271, train recall:93.420, train auc:97.377
+fold:0 epoch:15 step:5 train loss:0.201873, train acc:91.364, train f1:91.642, train precision:89.264, train recall:94.150, train auc:97.402
+fold:0 epoch:15 step:6 train loss:0.206755, train acc:90.988, train f1:91.303, train precision:88.948, train recall:93.786, train auc:97.291
+fold:0 epoch:15 step:7 train loss:0.209604, train acc:90.823, train f1:91.004, train precision:87.828, train recall:94.419, train auc:97.247
+fold:0 epoch:15 step:8 train loss:0.203480, train acc:91.254, train f1:91.454, train precision:89.428, train recall:93.575, train auc:97.385
+fold:0 epoch:15 step:9 train loss:0.207739, train acc:91.249, train f1:91.407, train precision:90.077, train recall:92.777, train auc:97.278
+fold:0 epoch:15        valid loss:0.208538, valid acc:91.235, valid f1:91.154, valid precision:92.014, valid recall:90.310, valid auc:97.518
+None
+====================================================================================================
+fold:0 epoch:16 step:0 train loss:0.203009, train acc:91.452, train f1:91.691, train precision:89.635, train recall:93.843, train auc:97.376
+fold:0 epoch:16 step:1 train loss:0.193080, train acc:91.733, train f1:91.950, train precision:89.964, train recall:94.026, train auc:97.644
+fold:0 epoch:16 step:2 train loss:0.197068, train acc:91.409, train f1:91.595, train precision:89.252, train recall:94.064, train auc:97.549
+fold:0 epoch:16 step:3 train loss:0.198577, train acc:91.534, train f1:91.703, train precision:89.362, train recall:94.170, train auc:97.536
+fold:0 epoch:16 step:4 train loss:0.198919, train acc:91.257, train f1:91.426, train precision:89.600, train recall:93.328, train auc:97.504
+fold:0 epoch:16 step:5 train loss:0.197474, train acc:91.547, train f1:91.736, train precision:90.059, train recall:93.476, train auc:97.566
+fold:0 epoch:16 step:6 train loss:0.195637, train acc:91.620, train f1:91.762, train precision:90.422, train recall:93.142, train auc:97.603
+fold:0 epoch:16 step:7 train loss:0.200077, train acc:91.400, train f1:91.590, train precision:89.926, train recall:93.317, train auc:97.491
+fold:0 epoch:16 step:8 train loss:0.198558, train acc:91.489, train f1:91.708, train precision:88.965, train recall:94.625, train auc:97.529
+fold:0 epoch:16 step:9 train loss:0.199570, train acc:91.522, train f1:91.768, train precision:88.781, train recall:94.963, train auc:97.479
+fold:0 epoch:16        valid loss:0.198553, valid acc:91.751, valid f1:91.831, valid precision:90.958, valid recall:92.720, valid auc:97.607
+None
+====================================================================================================
+fold:0 epoch:17 step:0 train loss:0.192157, train acc:91.794, train f1:91.961, train precision:89.863, train recall:94.160, train auc:97.672
+fold:0 epoch:17 step:1 train loss:0.190033, train acc:91.901, train f1:92.081, train precision:90.706, train recall:93.498, train auc:97.729
+fold:0 epoch:17 step:2 train loss:0.189630, train acc:91.898, train f1:92.137, train precision:90.106, train recall:94.261, train auc:97.723
+fold:0 epoch:17 step:3 train loss:0.191748, train acc:91.779, train f1:91.986, train precision:89.785, train recall:94.297, train auc:97.667
+fold:0 epoch:17 step:4 train loss:0.190011, train acc:91.873, train f1:91.990, train precision:89.942, train recall:94.134, train auc:97.738
+fold:0 epoch:17 step:5 train loss:0.184595, train acc:92.151, train f1:92.280, train precision:90.722, train recall:93.892, train auc:97.847
+fold:0 epoch:17 step:6 train loss:0.194237, train acc:91.742, train f1:91.936, train precision:90.581, train recall:93.333, train auc:97.637
+fold:0 epoch:17 step:7 train loss:0.186711, train acc:92.160, train f1:92.289, train precision:90.270, train recall:94.400, train auc:97.793
+fold:0 epoch:17 step:8 train loss:0.191409, train acc:91.913, train f1:92.069, train precision:89.796, train recall:94.461, train auc:97.683
+fold:0 epoch:17 step:9 train loss:0.198972, train acc:91.689, train f1:91.827, train precision:90.412, train recall:93.288, train auc:97.529
+fold:0 epoch:17        valid loss:0.185325, valid acc:92.440, valid f1:92.531, valid precision:91.422, valid recall:93.669, valid auc:97.892
+None
+====================================================================================================
+fold:0 epoch:18 step:0 train loss:0.181537, train acc:92.337, train f1:92.529, train precision:90.575, train recall:94.569, train auc:97.904
+fold:0 epoch:18 step:1 train loss:0.178714, train acc:92.465, train f1:92.653, train precision:90.591, train recall:94.812, train auc:97.972
+fold:0 epoch:18 step:2 train loss:0.183782, train acc:92.136, train f1:92.312, train precision:90.137, train recall:94.595, train auc:97.869
+fold:0 epoch:18 step:3 train loss:0.185469, train acc:92.142, train f1:92.287, train precision:90.538, train recall:94.105, train auc:97.823
+fold:0 epoch:18 step:4 train loss:0.189323, train acc:91.840, train f1:91.979, train precision:90.098, train recall:93.940, train auc:97.747
+fold:0 epoch:18 step:5 train loss:0.182708, train acc:92.270, train f1:92.441, train precision:90.431, train recall:94.543, train auc:97.858
+fold:0 epoch:18 step:6 train loss:0.183055, train acc:92.239, train f1:92.421, train precision:90.093, train recall:94.872, train auc:97.884
+fold:0 epoch:18 step:7 train loss:0.186999, train acc:92.294, train f1:92.485, train precision:90.939, train recall:94.084, train auc:97.803
+fold:0 epoch:18 step:8 train loss:0.180112, train acc:92.395, train f1:92.516, train precision:90.851, train recall:94.242, train auc:97.947
+fold:0 epoch:18 step:9 train loss:0.187243, train acc:92.172, train f1:92.288, train precision:90.361, train recall:94.298, train auc:97.757
+fold:0 epoch:18        valid loss:0.175622, valid acc:92.834, valid f1:92.892, valid precision:92.150, valid recall:93.645, valid auc:98.097
+None
+====================================================================================================
+fold:0 epoch:19 step:0 train loss:0.174359, train acc:92.712, train f1:92.834, train precision:91.063, train recall:94.675, train auc:98.070
+fold:0 epoch:19 step:1 train loss:0.180195, train acc:92.523, train f1:92.653, train precision:90.324, train recall:95.106, train auc:97.948
+fold:0 epoch:19 step:2 train loss:0.175026, train acc:92.636, train f1:92.765, train precision:90.760, train recall:94.861, train auc:98.066
+fold:0 epoch:19 step:3 train loss:0.179257, train acc:92.542, train f1:92.712, train precision:91.227, train recall:94.246, train auc:97.962
+fold:0 epoch:19 step:4 train loss:0.178957, train acc:92.599, train f1:92.801, train precision:90.582, train recall:95.131, train auc:97.960
+fold:0 epoch:19 step:5 train loss:0.180171, train acc:92.365, train f1:92.559, train precision:90.619, train recall:94.585, train auc:97.942
+fold:0 epoch:19 step:6 train loss:0.170968, train acc:92.969, train f1:93.102, train precision:91.239, train recall:95.043, train auc:98.143
+fold:0 epoch:19 step:7 train loss:0.182202, train acc:92.453, train f1:92.626, train precision:91.494, train recall:93.787, train auc:97.893
+fold:0 epoch:19 step:8 train loss:0.175115, train acc:92.499, train f1:92.627, train precision:90.775, train recall:94.556, train auc:98.064
+fold:0 epoch:19 step:9 train loss:0.179184, train acc:92.366, train f1:92.499, train precision:90.010, train recall:95.130, train auc:97.981
+fold:0 epoch:19        valid loss:0.175556, valid acc:92.848, valid f1:92.989, valid precision:91.194, valid recall:94.857, valid auc:98.069
+None
+====================================================================================================
+fold:0 epoch:20 step:0 train loss:0.172286, train acc:92.767, train f1:92.983, train precision:90.915, train recall:95.146, train auc:98.110
+fold:0 epoch:20 step:1 train loss:0.176276, train acc:92.673, train f1:92.793, train precision:91.246, train recall:94.394, train auc:98.041
+fold:0 epoch:20 step:2 train loss:0.168587, train acc:93.179, train f1:93.280, train precision:91.532, train recall:95.095, train auc:98.199
+fold:0 epoch:20 step:3 train loss:0.175454, train acc:92.657, train f1:92.833, train precision:91.059, train recall:94.677, train auc:98.056
+fold:0 epoch:20 step:4 train loss:0.171206, train acc:92.838, train f1:93.014, train precision:91.161, train recall:94.944, train auc:98.148
+fold:0 epoch:20 step:5 train loss:0.173301, train acc:92.746, train f1:92.862, train precision:90.739, train recall:95.086, train auc:98.090
+fold:0 epoch:20 step:6 train loss:0.175841, train acc:92.712, train f1:92.858, train precision:91.404, train recall:94.359, train auc:98.038
+fold:0 epoch:20 step:7 train loss:0.168200, train acc:93.073, train f1:93.240, train precision:91.389, train recall:95.167, train auc:98.200
+fold:0 epoch:20 step:8 train loss:0.175884, train acc:92.654, train f1:92.800, train precision:90.306, train recall:95.435, train auc:98.054
+fold:0 epoch:20 step:9 train loss:0.166361, train acc:93.008, train f1:93.102, train precision:90.901, train recall:95.412, train auc:98.219
+fold:0 epoch:20        valid loss:0.163604, valid acc:93.435, valid f1:93.560, valid precision:91.811, valid recall:95.377, valid auc:98.304
+None
+====================================================================================================
+fold:0 epoch:21 step:0 train loss:0.161652, train acc:93.271, train f1:93.327, train precision:91.834, train recall:94.869, train auc:98.330
+fold:0 epoch:21 step:1 train loss:0.171509, train acc:92.834, train f1:92.927, train precision:91.941, train recall:93.935, train auc:98.147
+fold:0 epoch:21 step:2 train loss:0.169425, train acc:93.018, train f1:93.136, train precision:91.564, train recall:94.762, train auc:98.172
+fold:0 epoch:21 step:3 train loss:0.169745, train acc:92.822, train f1:92.931, train precision:90.760, train recall:95.209, train auc:98.188
+fold:0 epoch:21 step:4 train loss:0.170565, train acc:93.042, train f1:93.219, train precision:91.692, train recall:94.798, train auc:98.155
+fold:0 epoch:21 step:5 train loss:0.165139, train acc:93.225, train f1:93.344, train precision:91.360, train recall:95.415, train auc:98.256
+fold:0 epoch:21 step:6 train loss:0.165488, train acc:93.060, train f1:93.220, train precision:91.261, train recall:95.265, train auc:98.267
+fold:0 epoch:21 step:7 train loss:0.167024, train acc:93.082, train f1:93.266, train precision:91.273, train recall:95.347, train auc:98.206
+fold:0 epoch:21 step:8 train loss:0.162646, train acc:93.274, train f1:93.420, train precision:91.305, train recall:95.636, train auc:98.329
+fold:0 epoch:21 step:9 train loss:0.165128, train acc:93.113, train f1:93.325, train precision:91.799, train recall:94.903, train auc:98.259
+fold:0 epoch:21        valid loss:0.161232, valid acc:93.581, valid f1:93.707, valid precision:91.907, valid recall:95.578, valid auc:98.343
+None
+====================================================================================================
+fold:0 epoch:22 step:0 train loss:0.161321, train acc:93.344, train f1:93.509, train precision:91.947, train recall:95.126, train auc:98.348
+fold:0 epoch:22 step:1 train loss:0.164602, train acc:93.225, train f1:93.382, train precision:91.356, train recall:95.500, train auc:98.285
+fold:0 epoch:22 step:2 train loss:0.158353, train acc:93.460, train f1:93.621, train precision:91.627, train recall:95.703, train auc:98.394
+fold:0 epoch:22 step:3 train loss:0.160881, train acc:93.338, train f1:93.470, train precision:91.782, train recall:95.222, train auc:98.334
+fold:0 epoch:22 step:4 train loss:0.160213, train acc:93.323, train f1:93.437, train precision:91.882, train recall:95.045, train auc:98.361
+fold:0 epoch:22 step:5 train loss:0.162744, train acc:93.195, train f1:93.261, train precision:91.671, train recall:94.907, train auc:98.324
+fold:0 epoch:22 step:6 train loss:0.165771, train acc:93.076, train f1:93.167, train precision:91.500, train recall:94.896, train auc:98.268
+fold:0 epoch:22 step:7 train loss:0.164238, train acc:93.091, train f1:93.232, train precision:91.481, train recall:95.050, train auc:98.258
+fold:0 epoch:22 step:8 train loss:0.160066, train acc:93.478, train f1:93.585, train precision:91.986, train recall:95.240, train auc:98.377
+fold:0 epoch:22 step:9 train loss:0.164427, train acc:93.298, train f1:93.454, train precision:91.136, train recall:95.892, train auc:98.246
+fold:0 epoch:22        valid loss:0.155994, valid acc:93.795, valid f1:93.908, valid precision:92.230, valid recall:95.648, valid auc:98.445
+None
+====================================================================================================
+fold:0 epoch:23 step:0 train loss:0.160154, train acc:93.344, train f1:93.457, train precision:91.548, train recall:95.447, train auc:98.378
+fold:0 epoch:23 step:1 train loss:0.152877, train acc:93.793, train f1:93.945, train precision:92.742, train recall:95.181, train auc:98.517
+fold:0 epoch:23 step:2 train loss:0.156465, train acc:93.631, train f1:93.784, train precision:92.406, train recall:95.205, train auc:98.430
+fold:0 epoch:23 step:3 train loss:0.160476, train acc:93.234, train f1:93.358, train precision:91.250, train recall:95.565, train auc:98.372
+fold:0 epoch:23 step:4 train loss:0.159541, train acc:93.381, train f1:93.485, train precision:91.364, train recall:95.707, train auc:98.385
+fold:0 epoch:23 step:5 train loss:0.158559, train acc:93.524, train f1:93.679, train precision:91.786, train recall:95.650, train auc:98.395
+fold:0 epoch:23 step:6 train loss:0.161232, train acc:93.323, train f1:93.413, train precision:92.104, train recall:94.760, train auc:98.349
+fold:0 epoch:23 step:7 train loss:0.151848, train acc:93.845, train f1:93.953, train precision:92.476, train recall:95.479, train auc:98.526
+fold:0 epoch:23 step:8 train loss:0.154522, train acc:93.723, train f1:93.813, train precision:92.017, train recall:95.681, train auc:98.475
+fold:0 epoch:23 step:9 train loss:0.159671, train acc:93.360, train f1:93.443, train precision:91.279, train recall:95.713, train auc:98.371
+fold:0 epoch:23        valid loss:0.152994, valid acc:93.960, valid f1:94.016, valid precision:93.145, valid recall:94.904, valid auc:98.531
+None
+====================================================================================================
+fold:0 epoch:24 step:0 train loss:0.154622, train acc:93.637, train f1:93.712, train precision:92.350, train recall:95.114, train auc:98.482
+fold:0 epoch:24 step:1 train loss:0.153607, train acc:93.692, train f1:93.803, train precision:92.300, train recall:95.355, train auc:98.486
+fold:0 epoch:24 step:2 train loss:0.152883, train acc:93.781, train f1:93.936, train precision:92.472, train recall:95.447, train auc:98.505
+fold:0 epoch:24 step:3 train loss:0.150500, train acc:93.835, train f1:93.996, train precision:91.920, train recall:96.168, train auc:98.556
+fold:0 epoch:24 step:4 train loss:0.154081, train acc:93.845, train f1:93.974, train precision:92.004, train recall:96.031, train auc:98.488
+fold:0 epoch:24 step:5 train loss:0.157134, train acc:93.445, train f1:93.563, train precision:91.565, train recall:95.650, train auc:98.425
+fold:0 epoch:24 step:6 train loss:0.153972, train acc:93.729, train f1:93.840, train precision:92.441, train recall:95.282, train auc:98.489
+fold:0 epoch:24 step:7 train loss:0.146999, train acc:94.019, train f1:94.120, train precision:92.707, train recall:95.576, train auc:98.625
+fold:0 epoch:24 step:8 train loss:0.154039, train acc:93.625, train f1:93.700, train precision:91.917, train recall:95.553, train auc:98.488
+fold:0 epoch:24 step:9 train loss:0.146530, train acc:94.160, train f1:94.220, train precision:92.323, train recall:96.196, train auc:98.608
+fold:0 epoch:24        valid loss:0.147930, valid acc:94.260, valid f1:94.344, valid precision:92.990, valid recall:95.737, valid auc:98.608
+None
+====================================================================================================
+fold:0 epoch:25 step:0 train loss:0.153551, train acc:93.735, train f1:93.858, train precision:92.238, train recall:95.536, train auc:98.507
+fold:0 epoch:25 step:1 train loss:0.148569, train acc:93.808, train f1:93.936, train precision:92.213, train recall:95.724, train auc:98.598
+fold:0 epoch:25 step:2 train loss:0.151777, train acc:93.762, train f1:93.887, train precision:92.618, train recall:95.191, train auc:98.523
+fold:0 epoch:25 step:3 train loss:0.155597, train acc:93.616, train f1:93.698, train precision:92.704, train recall:94.714, train auc:98.455
+fold:0 epoch:25 step:4 train loss:0.148624, train acc:94.006, train f1:94.117, train precision:92.282, train recall:96.027, train auc:98.571
+fold:0 epoch:25 step:5 train loss:0.150828, train acc:93.970, train f1:94.081, train precision:92.170, train recall:96.072, train auc:98.544
+fold:0 epoch:25 step:6 train loss:0.147630, train acc:93.927, train f1:94.037, train precision:91.992, train recall:96.175, train auc:98.602
+fold:0 epoch:25 step:7 train loss:0.148831, train acc:93.802, train f1:93.896, train precision:92.159, train recall:95.699, train auc:98.586
+fold:0 epoch:25 step:8 train loss:0.144931, train acc:94.046, train f1:94.131, train precision:92.811, train recall:95.490, train auc:98.658
+fold:0 epoch:25 step:9 train loss:0.150880, train acc:93.835, train f1:93.920, train precision:92.310, train recall:95.586, train auc:98.522
+fold:0 epoch:25        valid loss:0.146081, valid acc:94.255, valid f1:94.323, valid precision:93.220, valid recall:95.453, valid auc:98.643
+None
+====================================================================================================
+fold:0 epoch:26 step:0 train loss:0.144220, train acc:94.247, train f1:94.333, train precision:92.857, train recall:95.858, train auc:98.665
+fold:0 epoch:26 step:1 train loss:0.145645, train acc:94.037, train f1:94.129, train precision:92.512, train recall:95.805, train auc:98.636
+fold:0 epoch:26 step:2 train loss:0.147640, train acc:93.939, train f1:94.011, train precision:92.291, train recall:95.796, train auc:98.602
+fold:0 epoch:26 step:3 train loss:0.146743, train acc:94.104, train f1:94.181, train precision:93.120, train recall:95.265, train auc:98.613
+fold:0 epoch:26 step:4 train loss:0.141617, train acc:94.266, train f1:94.354, train precision:92.512, train recall:96.272, train auc:98.706
+fold:0 epoch:26 step:5 train loss:0.145628, train acc:94.034, train f1:94.146, train precision:91.930, train recall:96.472, train auc:98.665
+fold:0 epoch:26 step:6 train loss:0.141825, train acc:94.180, train f1:94.322, train precision:92.658, train recall:96.046, train auc:98.695
+fold:0 epoch:26 step:7 train loss:0.144593, train acc:94.189, train f1:94.291, train precision:92.629, train recall:96.012, train auc:98.644
+fold:0 epoch:26 step:8 train loss:0.145850, train acc:94.003, train f1:94.122, train precision:93.094, train recall:95.172, train auc:98.634
