@@ -1,2 +1,14 @@
-HetDDI/*.pth
+# files (e.g., logs, outputs, etc.)
 *.csv
+*.log
+*.pth
+*.pkl
+
+# Dummy data
+**/dummy/*
+
+# Python cache
+**/__pycache__/
+
+# Jupyter notebook
+# eda.ipynb
