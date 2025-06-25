@@ -1,6 +1,6 @@
 # files (e.g., logs, outputs, etc.)
 *.csv
-*.log
+# *.log
 *.pth
 *.pkl
 
