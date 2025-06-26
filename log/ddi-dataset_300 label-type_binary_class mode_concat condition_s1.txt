@@ -4999,3 +4999,66 @@ fold:0 epoch:352 step:8 train loss:0.010260, train acc:99.667, train f1:99.670, 
 fold:0 epoch:352 step:9 train loss:0.008751, train acc:99.657, train f1:99.659, train precision:99.546, train recall:99.772, train auc:99.995
 fold:0 epoch:352        valid loss:0.059995, valid acc:98.766, valid f1:98.770, valid precision:98.453, valid recall:99.088, valid auc:99.837
 [1;31mEarlyStopping counter: 14 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:353 step:0 train loss:0.009735, train acc:99.661, train f1:99.663, train precision:99.563, train recall:99.763, train auc:99.994
+fold:0 epoch:353 step:1 train loss:0.009180, train acc:99.698, train f1:99.697, train precision:99.676, train recall:99.719, train auc:99.994
+fold:0 epoch:353 step:2 train loss:0.010499, train acc:99.579, train f1:99.579, train precision:99.573, train recall:99.585, train auc:99.993
+fold:0 epoch:353 step:3 train loss:0.009270, train acc:99.634, train f1:99.634, train precision:99.762, train recall:99.507, train auc:99.995
+fold:0 epoch:353 step:4 train loss:0.009870, train acc:99.646, train f1:99.646, train precision:99.652, train recall:99.640, train auc:99.994
+fold:0 epoch:353 step:5 train loss:0.010029, train acc:99.628, train f1:99.625, train precision:99.564, train recall:99.687, train auc:99.993
+fold:0 epoch:353 step:6 train loss:0.009295, train acc:99.664, train f1:99.668, train precision:99.644, train recall:99.692, train auc:99.994
+fold:0 epoch:353 step:7 train loss:0.010202, train acc:99.652, train f1:99.650, train precision:99.613, train recall:99.686, train auc:99.993
+fold:0 epoch:353 step:8 train loss:0.010572, train acc:99.612, train f1:99.613, train precision:99.574, train recall:99.653, train auc:99.992
+fold:0 epoch:353 step:9 train loss:0.009641, train acc:99.587, train f1:99.582, train precision:99.520, train recall:99.644, train auc:99.995
+fold:0 epoch:353        valid loss:0.056572, valid acc:98.759, valid f1:98.763, valid precision:98.458, valid recall:99.070, valid auc:99.844
+[1;31mEarlyStopping counter: 15 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:354 step:0 train loss:0.008767, train acc:99.707, train f1:99.708, train precision:99.739, train recall:99.678, train auc:99.994
+fold:0 epoch:354 step:1 train loss:0.009207, train acc:99.646, train f1:99.646, train precision:99.689, train recall:99.604, train auc:99.994
+fold:0 epoch:354 step:2 train loss:0.008011, train acc:99.719, train f1:99.716, train precision:99.649, train recall:99.784, train auc:99.996
+fold:0 epoch:354 step:3 train loss:0.009242, train acc:99.655, train f1:99.656, train precision:99.629, train recall:99.683, train auc:99.995
+fold:0 epoch:354 step:4 train loss:0.009109, train acc:99.689, train f1:99.689, train precision:99.634, train recall:99.744, train auc:99.994
+fold:0 epoch:354 step:5 train loss:0.010217, train acc:99.615, train f1:99.614, train precision:99.602, train recall:99.626, train auc:99.992
+fold:0 epoch:354 step:6 train loss:0.008794, train acc:99.661, train f1:99.659, train precision:99.674, train recall:99.644, train auc:99.995
+fold:0 epoch:354 step:7 train loss:0.009466, train acc:99.658, train f1:99.661, train precision:99.637, train recall:99.685, train auc:99.994
+fold:0 epoch:354 step:8 train loss:0.008796, train acc:99.716, train f1:99.719, train precision:99.776, train recall:99.661, train auc:99.995
+fold:0 epoch:354 step:9 train loss:0.008887, train acc:99.710, train f1:99.707, train precision:99.698, train recall:99.716, train auc:99.994
+fold:0 epoch:354        valid loss:0.056640, valid acc:98.775, valid f1:98.779, valid precision:98.484, valid recall:99.075, valid auc:99.845
+[1;31mEarlyStopping counter: 16 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:355 step:0 train loss:0.008338, train acc:99.710, train f1:99.712, train precision:99.648, train recall:99.775, train auc:99.996
+fold:0 epoch:355 step:1 train loss:0.008499, train acc:99.701, train f1:99.701, train precision:99.707, train recall:99.695, train auc:99.995
+fold:0 epoch:355 step:2 train loss:0.009741, train acc:99.670, train f1:99.672, train precision:99.600, train recall:99.745, train auc:99.993
+fold:0 epoch:355 step:3 train loss:0.008071, train acc:99.704, train f1:99.702, train precision:99.650, train recall:99.754, train auc:99.996
+fold:0 epoch:355 step:4 train loss:0.009063, train acc:99.713, train f1:99.714, train precision:99.708, train recall:99.720, train auc:99.992
+fold:0 epoch:355 step:5 train loss:0.009693, train acc:99.670, train f1:99.669, train precision:99.682, train recall:99.657, train auc:99.993
+fold:0 epoch:355 step:6 train loss:0.009505, train acc:99.667, train f1:99.669, train precision:99.726, train recall:99.611, train auc:99.994
+fold:0 epoch:355 step:7 train loss:0.009218, train acc:99.670, train f1:99.670, train precision:99.633, train recall:99.707, train auc:99.994
+fold:0 epoch:355 step:8 train loss:0.010335, train acc:99.643, train f1:99.639, train precision:99.556, train recall:99.722, train auc:99.993
+fold:0 epoch:355 step:9 train loss:0.010688, train acc:99.666, train f1:99.672, train precision:99.810, train recall:99.534, train auc:99.991
+fold:0 epoch:355        valid loss:0.055745, valid acc:98.788, valid f1:98.791, valid precision:98.547, valid recall:99.036, valid auc:99.846
+[1;31mEarlyStopping counter: 17 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:356 step:0 train loss:0.008893, train acc:99.680, train f1:99.679, train precision:99.633, train recall:99.725, train auc:99.995
+fold:0 epoch:356 step:1 train loss:0.008758, train acc:99.686, train f1:99.685, train precision:99.694, train recall:99.676, train auc:99.995
+fold:0 epoch:356 step:2 train loss:0.008423, train acc:99.680, train f1:99.681, train precision:99.678, train recall:99.684, train auc:99.995
+fold:0 epoch:356 step:3 train loss:0.009461, train acc:99.664, train f1:99.665, train precision:99.635, train recall:99.695, train auc:99.994
+fold:0 epoch:356 step:4 train loss:0.007647, train acc:99.728, train f1:99.730, train precision:99.715, train recall:99.745, train auc:99.996
+fold:0 epoch:356 step:5 train loss:0.008280, train acc:99.673, train f1:99.673, train precision:99.609, train recall:99.737, train auc:99.996
+fold:0 epoch:356 step:6 train loss:0.008884, train acc:99.661, train f1:99.663, train precision:99.606, train recall:99.721, train auc:99.994
+fold:0 epoch:356 step:7 train loss:0.008784, train acc:99.670, train f1:99.671, train precision:99.695, train recall:99.647, train auc:99.995
+fold:0 epoch:356 step:8 train loss:0.009678, train acc:99.664, train f1:99.660, train precision:99.630, train recall:99.691, train auc:99.993
+fold:0 epoch:356 step:9 train loss:0.008376, train acc:99.701, train f1:99.700, train precision:99.683, train recall:99.718, train auc:99.995
+fold:0 epoch:356        valid loss:0.055942, valid acc:98.774, valid f1:98.777, valid precision:98.539, valid recall:99.015, valid auc:99.850
+[1;31mEarlyStopping counter: 18 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:357 step:0 train loss:0.008180, train acc:99.698, train f1:99.697, train precision:99.688, train recall:99.706, train auc:99.996
+fold:0 epoch:357 step:1 train loss:0.008478, train acc:99.680, train f1:99.679, train precision:99.713, train recall:99.646, train auc:99.996
+fold:0 epoch:357 step:2 train loss:0.008891, train acc:99.695, train f1:99.694, train precision:99.645, train recall:99.742, train auc:99.995
+fold:0 epoch:357 step:3 train loss:0.009572, train acc:99.649, train f1:99.649, train precision:99.500, train recall:99.798, train auc:99.993
+fold:0 epoch:357 step:4 train loss:0.010138, train acc:99.661, train f1:99.664, train precision:99.697, train recall:99.631, train auc:99.993

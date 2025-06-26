@@ -5073,3 +5073,7 @@ fold:0 epoch:357        valid loss:0.057276, valid acc:98.765, valid f1:98.767, 
 [98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
 ====================================================================================================
 fold:0 epoch:358 step:0 train loss:0.007841, train acc:99.741, train f1:99.741, train precision:99.750, train recall:99.732, train auc:99.996
+fold:0 epoch:358 step:1 train loss:0.008463, train acc:99.722, train f1:99.726, train precision:99.723, train recall:99.729, train auc:99.995
+fold:0 epoch:358 step:2 train loss:0.010451, train acc:99.670, train f1:99.670, train precision:99.537, train recall:99.804, train auc:99.993
+fold:0 epoch:358 step:3 train loss:0.009252, train acc:99.667, train f1:99.664, train precision:99.606, train recall:99.723, train auc:99.995
+fold:0 epoch:358 step:4 train loss:0.010898, train acc:99.625, train f1:99.623, train precision:99.681, train recall:99.566, train auc:99.992
