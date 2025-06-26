@@ -5052,3 +5052,15 @@ fold:0 epoch:356 step:4 train loss:0.007647, train acc:99.728, train f1:99.730, 
 fold:0 epoch:356 step:5 train loss:0.008280, train acc:99.673, train f1:99.673, train precision:99.609, train recall:99.737, train auc:99.996
 fold:0 epoch:356 step:6 train loss:0.008884, train acc:99.661, train f1:99.663, train precision:99.606, train recall:99.721, train auc:99.994
 fold:0 epoch:356 step:7 train loss:0.008784, train acc:99.670, train f1:99.671, train precision:99.695, train recall:99.647, train auc:99.995
+fold:0 epoch:356 step:8 train loss:0.009678, train acc:99.664, train f1:99.660, train precision:99.630, train recall:99.691, train auc:99.993
+fold:0 epoch:356 step:9 train loss:0.008376, train acc:99.701, train f1:99.700, train precision:99.683, train recall:99.718, train auc:99.995
+fold:0 epoch:356        valid loss:0.055942, valid acc:98.774, valid f1:98.777, valid precision:98.539, valid recall:99.015, valid auc:99.850
+[1;31mEarlyStopping counter: 18 out of 50[0m
+[98.80501501893693, 98.80758454421058, 98.59557867360208, 99.02050411388272, 99.8394003348033]
+====================================================================================================
+fold:0 epoch:357 step:0 train loss:0.008180, train acc:99.698, train f1:99.697, train precision:99.688, train recall:99.706, train auc:99.996
+fold:0 epoch:357 step:1 train loss:0.008478, train acc:99.680, train f1:99.679, train precision:99.713, train recall:99.646, train auc:99.996
+fold:0 epoch:357 step:2 train loss:0.008891, train acc:99.695, train f1:99.694, train precision:99.645, train recall:99.742, train auc:99.995
+fold:0 epoch:357 step:3 train loss:0.009572, train acc:99.649, train f1:99.649, train precision:99.500, train recall:99.798, train auc:99.993
+fold:0 epoch:357 step:4 train loss:0.010138, train acc:99.661, train f1:99.664, train precision:99.697, train recall:99.631, train auc:99.993
+fold:0 epoch:357 step:5 train loss:0.009051, train acc:99.701, train f1:99.703, train precision:99.703, train recall:99.703, train auc:99.995
