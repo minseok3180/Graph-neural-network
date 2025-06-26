@@ -10,5 +10,6 @@
 # Python cache
 **/__pycache__/
 
-# Jupyter notebook
 # eda.ipynb
+venv/
+venv/*

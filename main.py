@@ -175,7 +175,7 @@ if __name__ == '__main__':
         'mode': 'concat',
         
         'data_path': './data',
-        'kg_name': 'FOODRKG',
+        'kg_name': 'DRKG',
         'ddi_name': 'DrugBank',
     })
 
