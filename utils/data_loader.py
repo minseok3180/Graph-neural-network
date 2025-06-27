@@ -118,71 +118,61 @@ def get_train_test(data_path='./data', fold_num=5, label_type='multi_class', con
         train_sample.append(train)
         test_sample.append(test)
 
-    # generate negative samples
-    if label_type not in ['binary_class', 'multi_label']:
+    if label_type not in ['binary_class', 'multi_label']:  # label_type = 'multi_class'인 경우
         return train_sample, test_sample
-
-    if label_type == 'multi_label':
-        all_ddi = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
-    else:
-        all_ddi = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values[:, :2]
-    ddi = set()
-    for item in all_ddi:
-        ddi.add('\t'.join([str(_) for _ in item]))
+    
+    # DDI Set (positive sample 기준)
+    ddi_data = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
+    ddi_set = set('\t'.join(map(str, row)) for row in (ddi_data if label_type == 'multi_label' else ddi_data[:, :2]))
 
     for fold in range(fold_num):
+        train, test = train_sample[fold], test_sample[fold]
+
+        # drug ID pool 정의
         if condition == 's1':
-            train_drug = np.arange(max(train_sample[fold][:, :2].max(), test_sample[fold][:, :2].max())+1)
-            test_drug = train_drug
+            all_drugs = np.arange(max(train[:, :2].max(), test[:, :2].max()) + 1)
+            train_drugs = test_drugs = all_drugs
         else:
-            train_drug = np.unique(train_sample[fold][:, :2])
-            test_drug = np.unique(test_sample[fold][:, :2])
+            train_drugs = np.unique(train[:, :2])
+            test_drugs = np.unique(test[:, :2])
 
+        # binary label 1 할당
         if label_type == 'binary_class':
-            train_sample[fold][:, 2] = 1
-            test_sample[fold][:, 2] = 1
+            train[:, 2] = 1
+            test[:, 2] = 1
 
-        sample_neg = []
-        sample_pos = np.concatenate([train_sample[fold], test_sample[fold]])
-        for i in range(len(train_sample[fold])):
-            while True:
-                d1 = train_drug[np.random.randint(len(train_drug))]
-                d2 = train_drug[np.random.randint(len(train_drug))]
-                if d1 == d2:
-                    continue
-                if label_type == 'binary_class' and ('\t'.join([str(d1), str(d2)]) not in ddi and '\t'.join([str(d2), str(d1)]) not in ddi):
-                    sample_neg.append([d1, d2, 0])
-                    break
-                elif label_type == 'multi_label' and ('\t'.join([str(d1), str(d2), str(sample_pos[i][2])]) not in ddi and '\t'.join([str(d2), str(d1), str(sample_pos[i][2])]) not in ddi):
-                    sample_neg.append([d1, d2, 0])
-                    break
-        for i in range(len(train_sample[fold]), len(train_sample[fold])+len(test_sample[fold])):
-            while True:
-                d1 = test_drug[np.random.randint(len(test_drug))]
-                d2 = test_drug[np.random.randint(len(test_drug))]
-                if d1 == d2:
-                    continue
-                if label_type == 'binary_class' and ('\t'.join([str(d1), str(d2)]) not in ddi and '\t'.join([str(d2), str(d1)]) not in ddi):
-                    sample_neg.append([d1, d2, 0])
-                    break
-                elif label_type == 'multi_label' and ('\t'.join([str(d1), str(d2), str(sample_pos[i][2])]) not in ddi and '\t'.join([str(d2), str(d1), str(sample_pos[i][2])]) not in ddi):
-                    sample_neg.append([d1, d2, 0])
-                    break
-        train_sample_neg = np.array(sample_neg[:len(train_sample[fold])])
-        test_sample_neg = np.array(sample_neg[len(train_sample[fold]):])
+        # negative sample 생성 함수
+        def generate_neg(pos, drugs):
+            neg = []
+            for i in range(len(pos)):
+                while True:
+                    d1, d2 = np.random.choice(drugs, 2, replace=False)
+                    if label_type == 'binary_class':
+                        key1, key2 = f"{d1}\t{d2}", f"{d2}\t{d1}"
+                    else:
+                        key1 = f"{d1}\t{d2}\t{pos[i][2]}"
+                        key2 = f"{d2}\t{d1}\t{pos[i][2]}"
+                    if key1 not in ddi_set and key2 not in ddi_set:
+                        neg.append([d1, d2, 0])
+                        break
+            return np.array(neg, dtype=pos.dtype)
+
+        train_neg = generate_neg(train, train_drugs)
+        test_neg = generate_neg(test, test_drugs)
+
+        # multi-label 확장
         if label_type == 'multi_label':
-            train_sample[fold] = np.concatenate([train_sample[fold], train_sample[fold][:, 2:]], axis=-1)
-            test_sample[fold] = np.concatenate([test_sample[fold], test_sample[fold][:, 2:]], axis=-1)
-            train_sample[fold][:, 2] = 1
-            test_sample[fold][:, 2] = 1
+            for s in [train, test]:
+                s[:] = np.concatenate([s, s[:, 2:]], axis=1)
+                s[:, 2] = 1  # positive flag
 
-            train_sample_neg = np.concatenate([train_sample_neg, np.zeros((train_sample_neg.shape[0], 1), dtype=train_sample_neg.dtype)], axis=-1)
-            test_sample_neg = np.concatenate([test_sample_neg, np.zeros((test_sample_neg.shape[0], 1), dtype=test_sample_neg.dtype)], axis=-1)
-            train_sample_neg[:, 3] = train_sample[fold][:, 3]
-            test_sample_neg[:, 3] = test_sample[fold][:, 3]
+            for s_neg, s_pos in [(train_neg, train), (test_neg, test)]:
+                s_neg = np.concatenate([s_neg, np.zeros((len(s_neg), 1), dtype=s_neg.dtype)], axis=1)
+                s_neg[:, 3] = s_pos[:, 3]  # 같은 label 붙이기
 
-        train_sample[fold] = np.concatenate([train_sample[fold], train_sample_neg])
-        test_sample[fold] = np.concatenate([test_sample[fold], test_sample_neg])
+        # 통합
+        train_sample[fold] = np.concatenate([train, train_neg])
+        test_sample[fold] = np.concatenate([test, test_neg])
 
     return train_sample, test_sample
 
