@@ -10,6 +10,11 @@ class HetConv(nn.Module):
         super(HetConv, self).__init__()
 
         self.nodes = nodes
+        print("nodes:", self.nodes)
+        print("nodes dtype:", self.nodes.dtype)
+        print("nodes shape:", self.nodes.shape)
+        print(self.nodes[:, 0])
+        print(self.nodes[:, 1])
         self.edges = torch.arange(0, edges.max() + 1).to(nodes.device)
         # edge_dim = 16
         edge_dim = num_hidden
@@ -26,7 +31,15 @@ class HetConv(nn.Module):
         self.activation = activation
         self.leaky_relu = nn.LeakyReLU(negative_slope)
 
-        self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))
+        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))  #####
+        print(self.nodes[:, 0])
+        print(self.nodes[:, 1])
+        num_types = int(self.nodes[:, 1].max().item()) + 1
+        print("num_types:", num_types)
+        self.nodes_fc = nn.Parameter(torch.FloatTensor(
+            size=(num_types, num_hidden)
+        ))  #####
+
         # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(1, num_hidden)))
         # self.nodes_fc = self.nodes_fc[self.nodes[:, 1]]
         self.edges_fc = nn.Parameter(torch.FloatTensor(size=(edges.max() + 1, edge_dim)))
@@ -44,8 +57,10 @@ class HetConv(nn.Module):
 
     def forward(self, g, nodes_feat, edges_feat):
         g = g.local_var()
-        nodes_feat = nodes_feat * self.nodes_fc[0]
-        # nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]
+        # nodes_feat = nodes_feat * self.nodes_fc[0]  #####
+        nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]  #####
+        # → self.nodes_fc: [num_types, dim]  &  self.nodes[:, 1]: [num_nodes]
+
         g.ndata.update({'feat': nodes_feat,
                         'ft': (nodes_feat * self.nodes_attn).sum(dim=-1)})
         g.apply_edges(fn.u_add_v('ft', 'ft', 'e'))
