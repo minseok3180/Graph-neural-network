@@ -42,6 +42,18 @@ class HetConv(nn.Module):
             size=(num_types, num_hidden)
         ))  #####
 
+<<<<<<< HEAD
+=======
+        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))  #####
+        print(self.nodes[:, 0])
+        print(self.nodes[:, 1])
+        num_types = int(self.nodes[:, 1].max().item()) + 1
+        print("num_types:", num_types)
+        self.nodes_fc = nn.Parameter(torch.FloatTensor(
+            size=(num_types, num_hidden)
+        ))  #####
+
+>>>>>>> c0e63da79b1da395d7c7fa279d056285619b955f
         # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(1, num_hidden)))
         # self.nodes_fc = self.nodes_fc[self.nodes[:, 1]]
         self.edges_fc = nn.Parameter(torch.FloatTensor(size=(edges.max() + 1, edge_dim)))
@@ -62,7 +74,11 @@ class HetConv(nn.Module):
         # nodes_feat = nodes_feat * self.nodes_fc[0]  #####
         nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]  #####
         # → self.nodes_fc: [num_types, dim]  &  self.nodes[:, 1]: [num_nodes]
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> c0e63da79b1da395d7c7fa279d056285619b955f
         g.ndata.update({'feat': nodes_feat,
                         'ft': (nodes_feat * self.nodes_attn).sum(dim=-1)})
         g.apply_edges(fn.u_add_v('ft', 'ft', 'e'))

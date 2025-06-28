@@ -33,4 +33,9 @@ python -c "from rdkit import Chem; print(Chem.MolFromSmiles('CCO'))"
 
 conda install -c dglteam dgllife -y
 
+pip uninstall numpy -y
+pip install "numpy<2"
+
+pip install easydict
+
 nohup python main.py > log/main.log 2>&1 &
