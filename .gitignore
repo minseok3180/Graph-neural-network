@@ -1,14 +1,19 @@
 # files (e.g., logs, outputs, etc.)
 *.csv
-*.log
+# *.log
 *.pth
 *.pkl
 
 # Dummy data
-**/dummy/*
+**/dummy/
 
 # Python cache
 **/__pycache__/
 
-# Jupyter notebook
 # eda.ipynb
+venv/
+venv/*
+
+
+# exception for the following files
+!F2Cs.pkl
