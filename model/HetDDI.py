@@ -32,7 +32,7 @@ class HetDDI(nn.Module):
         dropout = 0.1
         if self.mode == 'only_kg' or self.mode == 'concat':
             self.kg = HGNN(kg_g, kg_g.edata['edges'], kg_g.ndata['nodes'], num_hidden, num_layer=num_layer)
-            self.kg.load_state_dict(torch.load('./kg_weight.pth'))
+            # self.kg.load_state_dict(torch.load('./kg_weight.pth'))
             self.kg_size = self.kg.get_output_size()
             self.kg_fc = nn.Sequential(nn.Linear(self.kg_size, self.kg_size),
                                        nn.BatchNorm1d(self.kg_size),
