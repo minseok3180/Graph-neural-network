@@ -5,7 +5,7 @@
 *.pkl
 
 # Dummy data
-**/dummy/*
+**/dummy/
 
 # Python cache
 **/__pycache__/

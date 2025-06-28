@@ -41,74 +41,6 @@ def load_data(data_path='./data', device=torch.device('cpu')):
 
     return kg_g.to(device), smiles_list
 
-
-def update_food_data_with_indices(data_path='./data'):
-    # 경로 설정
-    smiles_file = os.path.join(data_path, 'smiles.tsv')
-    food_node_file = os.path.join(data_path, 'food_node.tsv')
-    food_edge_file = os.path.join(data_path, 'food_edge.tsv')
-    food_node_indexed_file = os.path.join(data_path, 'food_node_indexed.tsv')
-    food_edge_indexed_file = os.path.join(data_path, 'food_edge_indexed.tsv')
-
-    # 1. smiles.tsv 로드 및 dict 생성
-    smiles_df = pd.read_csv(smiles_file, sep='\t', header=None, names=['idx', 'smiles'])
-    smiles_to_idx = {s: i for i, s in zip(smiles_df['idx'], smiles_df['smiles'])}
-    next_smiles_idx = max(smiles_df['idx']) + 1 if not smiles_df.empty else 0
-    print(next_smiles_idx)
-
-    # 2. food_node.tsv 로드
-    node_df = pd.read_csv(food_node_file, sep='\t')
-    food_list = node_df[node_df['node_type'] == 'food']['id'].tolist()
-    molecule_list = node_df[node_df['node_type'] == 'molecule']['id'].tolist()
-
-    # 3. smiles 추가 indexing
-    for smiles in molecule_list:
-        if smiles not in smiles_to_idx:
-            smiles_to_idx[smiles] = next_smiles_idx
-            smiles_df.loc[len(smiles_df)] = [next_smiles_idx, smiles]
-            next_smiles_idx += 1
-
-    # 4. food indexing
-    food_to_idx = {food: i for i, food in enumerate(sorted(set(food_list)))}
-
-    # 5. food_node_indexed.tsv 생성
-    indexed_nodes = []
-    for _, row in node_df.iterrows():
-        if row['node_type'] == 'food':
-            idx = food_to_idx[row['id']]
-        else:  # molecule
-            idx = smiles_to_idx[row['id']]
-        indexed_nodes.append([idx, row['id'], row['node_type']])
-    pd.DataFrame(indexed_nodes, columns=['id', 'name', 'node_type']).to_csv(
-        food_node_indexed_file, sep='\t', index=False
-    )
-
-    # 6. food_edge.tsv 처리 및 indexing
-    edge_df = pd.read_csv(food_edge_file, sep='\t')
-    edge_rows = []
-    for _, row in edge_df.iterrows():
-        source = row['source']
-        target = row['target']
-        weight = row['weight']
-        if source not in food_to_idx:
-            food_to_idx[source] = len(food_to_idx)
-        if target not in smiles_to_idx:
-            smiles_to_idx[target] = next_smiles_idx
-            smiles_df.loc[len(smiles_df)] = [next_smiles_idx, target]
-            next_smiles_idx += 1
-        edge_rows.append([food_to_idx[source], smiles_to_idx[target], weight])
-
-    pd.DataFrame(edge_rows, columns=['source', 'target', 'weight']).to_csv(
-        food_edge_indexed_file, sep='\t', index=False
-    )
-
-    # 7. smiles.tsv 갱신 저장
-    smiles_df = smiles_df.sort_values('idx').reset_index(drop=True)
-    smiles_df.to_csv(smiles_file, sep='\t', index=False, header=False)
-
-    return food_node_indexed_file, food_edge_indexed_file, smiles_file
-
-
 def get_train_test(data_path='./data', fold_num=5, label_type='multi_class', condition='s1'):
     sample = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
     kfold = KFold(n_splits=fold_num, shuffle=True, random_state=42, up_sample=(label_type == 'multi_class'), condition=condition)
@@ -180,4 +112,3 @@ if __name__ == '__main__':
     os.chdir('../')
     # load_data()
     # get_train_test()
-    update_food_data_with_indices(data_path='./data/FOODRKG+DrugBank')
