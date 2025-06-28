@@ -17,13 +17,13 @@ def train_one_epoch(f2c, model, loss_func, optimizer, train_x_left, train_x_righ
         x_right = train_x_right[index]
         if label_type == 'multi_class':
             y = train_y[index].squeeze(dim=-1)
-            y_pred = model(x_left, x_right)
+            y_pred = model(x_left, x_right, f2c)
         elif label_type == 'binary_class':
             y = train_y[index]
-            y_pred = model(x_left, x_right)
+            y_pred = model(x_left, x_right, f2c)
         elif label_type == 'multi_label':
             y = train_y[index, 0]
-            y_pred = model(x_left, x_right)
+            y_pred = model(x_left, x_right, f2c)
             y_pred = y_pred[label_matrix[train_y[index, 1].long()]]
 
         train_loss = loss_func(y_pred, y.to(device))
@@ -86,15 +86,15 @@ def test(f2c, model, loss_func, valid_x_left, valid_x_right, valid_y,
                 if len(y) == 0:
                     y = torch.LongTensor([])
                 y = torch.concat([y, valid_y[index].squeeze(dim=-1)])
-                y_pred = torch.concat([y_pred, model(x_left, x_right)])
+                y_pred = torch.concat([y_pred, model(x_left, x_right, f2c)])
             elif label_type == 'binary_class':
                 y = torch.concat([y, valid_y[index]])
-                y_pred = torch.concat([y_pred, model(x_left, x_right)])
+                y_pred = torch.concat([y_pred, model(x_left, x_right, f2c)])
             elif label_type == 'multi_label':
                 if len(y) == 0:
                     y = torch.LongTensor([])
                 y = torch.concat([y, valid_y[index, 0]])
-                y_pred = torch.concat([y_pred, model(x_left, x_right)[label_matrix[valid_y[index, 1].long()]]])
+                y_pred = torch.concat([y_pred, model(x_left, x_right, f2c)[label_matrix[valid_y[index, 1].long()]]])
 
         valid_loss = loss_func(y_pred, y.to(device))
 
