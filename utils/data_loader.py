@@ -1,8 +1,9 @@
 import os
 import numpy as np
 import dgl
-import tqdm
+from tqdm import tqdm
 import torch
+import torch.nn.functional as F
 from torch.utils import data
 import pickle
 from utils.KFold import KFold
@@ -17,7 +18,7 @@ def load_data(data_path='./data', device=torch.device('cpu')):
     else:
         edges, e_feat = [], []
         with open(os.path.join(data_path, 'edges.tsv')) as f:
-            for line in tqdm.tqdm(f, desc='loading kg'):
+            for line in tqdm(f, desc='loading kg'):
                 h, r, t = map(int, line.strip().split('\t'))
                 if h == t: continue  # self loop 제외
                 edges += [[h, t], [t, h]]
@@ -39,7 +40,23 @@ def load_data(data_path='./data', device=torch.device('cpu')):
     with open(os.path.join(data_path, 'smiles.tsv')) as f:
         smiles_list = [line.strip().split('\t')[1] for line in f]  # [num_smiles]: smiles 데이터
 
-    return kg_g.to(device), smiles_list
+    with open(os.path.join(data_path, 'F2Cs.pkl'), 'rb') as f:
+        food_to_compounds = pickle.load(f)
+
+    f2c_dict = {}
+
+    for food_id, pairs in tqdm(food_to_compounds.items()):
+        if not pairs:
+            continue
+        compound_ids, weights = zip(*pairs)  # list of tuples -> tuple of tuples
+        weights_tensor = torch.tensor(weights, dtype=torch.float, device=device)
+        weights_soft = F.softmax(weights_tensor, dim=0)
+        f2c_dict[food_id] = {
+            'compound_ids': torch.tensor(compound_ids, dtype=torch.long, device=device),
+            'weights': weights_soft
+        }
+
+    return kg_g.to(device), smiles_list, f2c_dict
 
 def get_train_test(data_path='./data', fold_num=5, label_type='multi_class', condition='s1'):
     sample = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
@@ -76,7 +93,7 @@ def get_train_test(data_path='./data', fold_num=5, label_type='multi_class', con
         # negative sample 생성 함수
         def generate_neg(pos, drugs):
             neg = []
-            for i in range(len(pos)):
+            for i in tqdm(range(len(pos))):
                 while True:
                     d1, d2 = np.random.choice(drugs, 2, replace=False)
                     if label_type == 'binary_class':

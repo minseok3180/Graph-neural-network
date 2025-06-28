@@ -3,7 +3,7 @@ import torch
 from utils.metrics import multi_class_eval, binary_class_eval, multi_label_eval
 
 
-def train_one_epoch(model, loss_func, optimizer, train_x_left, train_x_right, train_y,
+def train_one_epoch(f2c, model, loss_func, optimizer, train_x_left, train_x_right, train_y,
                     fold_index, epoch, batch_size, label_type, device):
     train_index = np.arange(len(train_y))
     np.random.shuffle(train_index)
@@ -69,7 +69,7 @@ def train_one_epoch(model, loss_func, optimizer, train_x_left, train_x_right, tr
         step += 1
 
 
-def test(model, loss_func, valid_x_left, valid_x_right, valid_y,
+def test(f2c, model, loss_func, valid_x_left, valid_x_right, valid_y,
          fold_index, epoch, batch_size, label_type, device):
     model.eval()
     if label_type == 'multi_label':

@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer, util
 import numpy as np
 import pandas as pd
 
-
+##########################################################################################
 def build_fuzzy_food_mapper(kg_nodes_file, threshold=40):
     # 1. load kg_nodes.tsv
     kg_df = pd.read_csv(kg_nodes_file, sep='\t', header=None, names=['index', 'name', 'type'])
@@ -34,7 +34,7 @@ def build_fuzzy_food_mapper(kg_nodes_file, threshold=40):
             return None, None, score
 
     return match_fuzzy_name
-
+##########################################################################################
 def update_food_data_with_indices(data_path='./data'):
     # 경로 설정
     smiles_file = os.path.join(data_path, 'smiles.tsv')
@@ -120,7 +120,7 @@ def update_food_data_with_indices(data_path='./data'):
 
     return food_node_indexed_file, food_edge_indexed_file, smiles_file
 
-
+##########################################################################################
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer, util
 
@@ -198,7 +198,7 @@ def run_bert_node_edge_matching(data_path='./data'):
 if __name__ == '__main__':
     # # os.chdir('../')
     # # update_food_data_with_indices(data_path='./data/FOODRKG+DrugBank')
-    
+    ##########################################################################################
 
     # matcher = build_fuzzy_food_mapper('./data/FOODRKG+DrugBank/new_kg_nodes.tsv')
 
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     #         print(f"[MATCHED] '{name}' → '{matched}' (ID: {idx}, Score: {score})")
     #     else:
     #         print(f"[FAILED] '{name}' → No match found (Score: {score})")
-
+    ##########################################################################################
     
     # # SBERT 모델 로딩 (한글이면 klue/roberta-small 등, 영어면 all-MiniLM 등)
     # model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -242,30 +242,65 @@ if __name__ == '__main__':
     #         print(f"[BERT MATCHED] '{name}' → '{matched}' (ID: {idx}, Score: {score:.3f})")
     #     else:
     #         print(f"[FAILED] '{name}' → No match (Score: {score:.3f})")
-
+    ##########################################################################################
     # run_bert_node_edge_matching('./data/FOODRKG+DrugBank')
+    ##########################################################################################
+    # import pandas as pd
+
+    # # 경로 설정
+    # file_path = './data/FOODRKG+DrugBank/new_ddi.tsv'
+    # filtered_path = './data/FOODRKG+DrugBank/filtered_new_ddi.tsv'
+    # removed_path = './data/FOODRKG+DrugBank/removed_ddi.tsv'
+
+    # # 파일 로드
+    # df = pd.read_csv(file_path, sep='\t', header=None, names=['drug1', 'drug2', 'label'])
+
+    # # 필터 조건: drug1 또는 drug2 중 하나라도 200000 이상인 행
+    # mask_removed = (df['drug1'] >= 200000) | (df['drug2'] >= 200000)
+
+    # # 제거된 행
+    # removed_df = df[mask_removed]
+
+    # # 유지할 행 (반대 조건)
+    # filtered_df = df[~mask_removed]
+
+    # # 결과 저장
+    # filtered_df.to_csv(filtered_path, sep='\t', index=False, header=False)
+    # removed_df.to_csv(removed_path, sep='\t', index=False, header=False)
+
+    # print(f"✅ 필터링 완료\n- 유지된 행: {filtered_path}\n- 제거된 행: {removed_path}")
+    ##########################################################################################
 
     import pandas as pd
+    from collections import defaultdict
 
-    # 경로 설정
-    file_path = './data/FOODRKG+DrugBank/new_ddi.tsv'
-    filtered_path = './data/FOODRKG+DrugBank/filtered_new_ddi.tsv'
-    removed_path = './data/FOODRKG+DrugBank/removed_ddi.tsv'
+    # 파일 경로 설정
+    edge_file = './data/FOODRKG+DrugBank/food_edges.tsv'
 
-    # 파일 로드
-    df = pd.read_csv(file_path, sep='\t', header=None, names=['drug1', 'drug2', 'label'])
+    # 데이터 로드
+    df = pd.read_csv(edge_file, sep='\t')  # header 포함되어 있다고 가정
 
-    # 필터 조건: drug1 또는 drug2 중 하나라도 200000 이상인 행
-    mask_removed = (df['drug1'] >= 200000) | (df['drug2'] >= 200000)
+    # defaultdict로 초기화
+    food_to_compounds = defaultdict(list)
 
-    # 제거된 행
-    removed_df = df[mask_removed]
+    # 데이터 순회하며 dict 구성
+    for _, row in df.iterrows():
+        food_id = int(row['source'])
+        compound_id = int(row['target'])
+        weight = float(row['weight'])
+        if weight > 0:
+            food_to_compounds[food_id].append((compound_id, weight))
 
-    # 유지할 행 (반대 조건)
-    filtered_df = df[~mask_removed]
+    import pickle
 
-    # 결과 저장
-    filtered_df.to_csv(filtered_path, sep='\t', index=False, header=False)
-    removed_df.to_csv(removed_path, sep='\t', index=False, header=False)
+    # 저장
+    with open('./data/FOODRKG+DrugBank/F2Cs.pkl', 'wb') as f:
+        pickle.dump(food_to_compounds, f)
 
-    print(f"✅ 필터링 완료\n- 유지된 행: {filtered_path}\n- 제거된 행: {removed_path}")
+    # 로드
+    with open('./data/FOODRKG+DrugBank/F2Cs.pkl', 'rb') as f:
+        food_to_compounds = pickle.load(f)
+
+    # 예시 출력
+    example_id = 98261
+    print(f"Food {example_id} has compounds:", food_to_compounds[example_id][:5])

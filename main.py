@@ -20,97 +20,71 @@ def run(args):
     if torch.cuda.is_available():
         torch.cuda.manual_seed(42)
 
-    # 데이터 경로구성 및 로딩
-    data_path = os.path.join(args.data_path, args.kg_name+'+'+args.ddi_name)
-    kg_g, smiles = load_data(data_path, device=device)
-    train_sample, test_sample = get_train_test(
-        data_path, fold_num=args.fold_num, label_type=args.label_type, condition=args.condition
-        )
+    # load data
+    data_path = os.path.join(args.data_path, f"{args.kg_name}+{args.ddi_name}")
+    kg_g, smiles, f2c_dict = load_data(data_path, device=device)
+    train_sample, test_sample = get_train_test(data_path, args.fold_num, args.label_type, args.condition)
+
+    label_dims = {'multi_class': 86, 'binary_class': 1, 'multi_label': 200}
+    loss_funcs = {
+        'multi_class': nn.CrossEntropyLoss(),
+        'binary_class': nn.BCEWithLogitsLoss(),
+        'multi_label': nn.BCEWithLogitsLoss()
+    }
 
     scores = []
-    for i in range(0, args.fold_num):
+    for fold in range(args.fold_num):
         # 훈련 및 테스트 데이터 분할
-        train_x_left = train_sample[i][:, 0]
-        train_x_right = train_sample[i][:, 1]
-        train_y = train_sample[i][:, 2:]
+        txl, txr, ty = train_sample[fold][:, 0], train_sample[fold][:, 1], train_sample[fold][:, 2:]  # train x left, ..., train y
+        vxl, vxr, vy = test_sample[fold][:, 0], test_sample[fold][:, 1], test_sample[fold][:, 2:]  # validation x left, ..., validation y
 
-        test_x_left = test_sample[i][:, 0]
-        test_x_right = test_sample[i][:, 1]
-        test_y = test_sample[i][:, 2:]
+        ty = torch.from_numpy(ty).long() if args.label_type == 'multi_class' else torch.from_numpy(ty).float()
+        vy = torch.from_numpy(vy).long() if args.label_type == 'multi_class' else torch.from_numpy(vy).float()
 
-        # 레이블 타입에 따라 float/long Tensor로 변환
-        if args.label_type == 'multi_class':
-            train_y = torch.from_numpy(train_y).long()
-            test_y = torch.from_numpy(test_y).long()
-        else:
-            train_y = torch.from_numpy(train_y).float()
-            test_y = torch.from_numpy(test_y).float()
-
-        # load model
-        # 모델과 loss function 설정 (label_type에 따라 클래스 수 달라짐)
-        if args.label_type == 'multi_class':
-            model = HetDDI(kg_g, smiles, args.hidden_dim, args.num_layer, args.mode, 86, args.condition).to(device)
-            loss_func = nn.CrossEntropyLoss()
-        elif args.label_type == 'binary_class':
-            model = HetDDI(kg_g, smiles, args.hidden_dim, args.num_layer, args.mode, 1, args.condition).to(device)
-            loss_func = nn.BCEWithLogitsLoss()
-        elif args.label_type == 'multi_label':
-            model = HetDDI(kg_g, smiles, args.hidden_dim, args.num_layer, args.mode, 200, args.condition).to(device)
-            loss_func = nn.BCEWithLogitsLoss()
-        
-        if i == 0:
-            print(model)
+        # model + loss
+        model = HetDDI(kg_g, smiles, args.hidden_dim, args.num_layer, args.mode, label_dims[args.label_type], args.condition).to(device)
+        loss_func = loss_funcs[args.label_type]
+        if fold == 0: print(model)
 
         # divide parameters into two parts, weight_p has l2_norm but bias_bn_emb_p not
         # weight_decay 적용할 파라미터 구분 (bias, bn, embedding 제외)
         weight_p, bias_bn_emb_p = [], []
         for name, p in model.named_parameters():
-            if 'bias' in name or 'bn' in name or 'embedding' in name:
-                bias_bn_emb_p += [p]
-            else:
-                weight_p += [p]
-        model_parameters = [
-            {'params': weight_p, 'weight_decay': args.weight_decay},
-            {'params': bias_bn_emb_p, 'weight_decay': 0},
-        ]
+            (bias_bn_emb_p if any(x in name for x in ['bias', 'bn', 'embedding']) else weight_p).append(p)
 
         # optimizer 및 early stopping 설정
-        optimizer = optim.Adam(model_parameters, lr=args.lr)
+        optimizer = optim.Adam([
+            {'params': weight_p, 'weight_decay': args.weight_decay},
+            {'params': bias_bn_emb_p, 'weight_decay': 0},
+        ], lr=args.lr)
         early_stopping = EarlyStopping(patience=args.patience, verbose=True)
-
-        best_test_score = None
+        best_val_score = None
+        
         for epoch in range(args.epoch):
             # 1 epoch 학습
-            train_one_epoch(model, loss_func, optimizer,
-                            train_x_left, train_x_right, train_y,
-                            i, epoch, args.batch_size,
-                            args.label_type, device)
+            train_one_epoch(f2c_dict, model, loss_func, optimizer, txl, txr, ty, fold, epoch, args.batch_size, args.label_type, device)
 
             # 평가
-            test_score = test(model, loss_func,
-                              test_x_left, test_x_right, test_y,
-                              i, epoch, args.batch_size,
-                              args.label_type, device)
+            val_score = test(f2c_dict, model, loss_func, vxl, vxr, vy, fold, epoch, args.batch_size, args.label_type, device)
 
-            test_acc = test_score[0] # acc or auc
-            if epoch > 50:
-                early_stopping(test_acc, model)
+            val_acc = val_score[0] # acc or auc
+            if epoch > 30:
+                early_stopping(val_acc, model)
                 if early_stopping.counter == 0:
-                    best_test_score = test_score
+                    best_val_score = val_score
                 if early_stopping.early_stop or epoch == args.epoch - 1:
                     break
 
             # epoch 결과 출력
-            print(best_test_score)
+            print(best_val_score)
             print("=" * 100)
 
         # 현재 fold 성능 저장
-        scores.append(best_test_score)
-        print('Test set score:', scores)
+        scores.append(best_val_score)
+        print(f"[Fold {fold}] Best Score:", best_val_score)
 
     # 전체 fold 결과 평균 계산
-    scores = np.array(scores)
-    scores = scores.mean(axis=0)
+    scores = np.array(scores).mean(axis=0)
 
     # 최종 성능 출력 (label_type에 따라 출력 항목 다름)
     if args.label_type == 'multi_class':
@@ -166,16 +140,16 @@ if __name__ == '__main__':
         'fold_num': 5,
         'hidden_dim': 300,
         'num_layer': 3,
-        'epoch': 1000,
+        'epoch': 100,
         'patience': 50,
         'lr': 1e-3,
         'weight_decay': 1e-5,
-        'label_type': 'binary_class',
+        'label_type': 'multi_class',  # binary_class
         'condition': 's1',
         'mode': 'concat',
         
         'data_path': './data',
-        'kg_name': 'DRKG',
+        'kg_name': 'FOODRKG',
         'ddi_name': 'DrugBank',
     })
 

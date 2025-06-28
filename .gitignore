@@ -13,3 +13,7 @@
 # eda.ipynb
 venv/
 venv/*
+
+
+# exception for the following files
+!F2Cs.pkl
