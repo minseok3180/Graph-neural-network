@@ -15,6 +15,8 @@ def load_data(data_path='./data', device=torch.device('cpu')):
     if os.path.exists(kg_file):
         with open(kg_file, 'rb') as f:
             kg_g, e_feat = pickle.load(f)
+        kg_g.to(device)
+
     else:
         edges, e_feat = [], []
         with open(os.path.join(data_path, 'edges.tsv')) as f:
@@ -30,9 +32,17 @@ def load_data(data_path='./data', device=torch.device('cpu')):
         e_feat = np.concatenate([e_feat, np.zeros(pad, dtype=np.int64)])  # self loop 명시적 생성, e_feat(list)에도 추가
 
         with open(os.path.join(data_path, 'nodes.tsv')) as f:
-            nodes: list = [list(map(int, line.strip().split('\t')[::2])) for line in f]  # [객체id * 2] -> 한 행당 '객체, 범주' 형태로 이뤄짐 
-        kg_g.ndata['nodes'] = torch.tensor(nodes)  # [num_nodes, 2]
-        kg_g.edata['edges'] = torch.from_numpy(e_feat)  # [num_edges]: label class 정보 포함
+            nodes = []
+            for line in f:
+                parts = line.strip().split('\t')
+                if len(parts) >= 3:
+                    node_id = int(parts[0])
+                    node_type = int(parts[2])
+                    nodes.append([node_id, node_type])
+
+        kg_g.ndata['nodes'] = torch.tensor(nodes, dtype=torch.long)
+        kg_g.edata['edges'] = torch.from_numpy(e_feat)
+        kg_g.to(device)
 
         with open(kg_file, 'wb') as f:
             pickle.dump([kg_g, e_feat], f)
@@ -55,6 +65,9 @@ def load_data(data_path='./data', device=torch.device('cpu')):
             'compound_ids': torch.tensor(compound_ids, dtype=torch.long, device=device),
             'weights': weights_soft
         }
+    print('kg_g.ndata[nodes].shape =', kg_g.ndata['nodes'].shape)
+    print("node types unique:", torch.unique(kg_g.ndata['nodes'][:, 1]))
+    print("max node type:", kg_g.ndata['nodes'][:, 1].max())
 
     return kg_g.to(device), smiles_list, f2c_dict
 

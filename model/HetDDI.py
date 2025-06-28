@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 import torch
 import torch.nn as nn
@@ -161,6 +161,7 @@ if __name__ == '__main__':
 
     data_path = os.path.join(args.data_path, f"{args.kg_name}+{args.ddi_name}")
     kg_g, smiles, f2c_dict = load_data(data_path, device=device)
+    print(kg_g.ndata['nodes'])
 
     kg_model = HGNN(kg_g, kg_g.edata['edges'], kg_g.ndata['nodes'], args.hidden_dim, num_layer=args.num_layer).to(device)
 
