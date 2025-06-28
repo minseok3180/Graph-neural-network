@@ -9,6 +9,7 @@
 
 # Python cache
 **/__pycache__/
+**/hetddi/
 
 # eda.ipynb
 venv/
