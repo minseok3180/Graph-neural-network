@@ -26,6 +26,11 @@ def train_one_epoch(f2c, model, loss_func, optimizer, train_x_left, train_x_righ
             y_pred = model(x_left, x_right, f2c)
             y_pred = y_pred[label_matrix[train_y[index, 1].long()]]
 
+        print("output.shape:", y_pred.shape)     # ex: [32, 88]
+        print("ty.shape:", y.shape)             # ex: [32]
+        print("ty.min():", y.min().item())
+        print("ty.max():", y.max().item())
+
         train_loss = loss_func(y_pred, y.to(device))
 
         if label_type == 'multi_class':

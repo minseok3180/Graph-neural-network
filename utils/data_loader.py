@@ -50,24 +50,63 @@ def load_data(data_path='./data', device=torch.device('cpu')):
     with open(os.path.join(data_path, 'smiles.tsv')) as f:
         smiles_list = [line.strip().split('\t')[1] for line in f]  # [num_smiles]: smiles 데이터
 
-    with open(os.path.join(data_path, 'F2Cs.pkl'), 'rb') as f:
-        food_to_compounds = pickle.load(f)
+    with open(os.path.join(data_path, 'f2cs.pkl'), 'rb') as f:
+        f2c_dict = pickle.load(f)
+    # import math
 
-    f2c_dict = {}
+    # def softmax(x):
+    #     if not x: return []
+    #     max_x = max(x)
+    #     e_x = [math.exp(v - max_x) for v in x]
+    #     total = sum(e_x)
+    #     if total == 0.0 or math.isnan(total) or math.isinf(total):
+    #         return [1.0 / len(x)] * len(x)  # fallback uniform
+    #     return [v / total for v in e_x]
+    # cleaned_f2c = {}
 
-    for food_id, pairs in tqdm(food_to_compounds.items()):
-        if not pairs:
-            continue
-        compound_ids, weights = zip(*pairs)  # list of tuples -> tuple of tuples
-        weights_tensor = torch.tensor(weights, dtype=torch.float, device=device)
-        weights_soft = F.softmax(weights_tensor, dim=0)
-        f2c_dict[food_id] = {
-            'compound_ids': torch.tensor(compound_ids, dtype=torch.long, device=device),
-            'weights': weights_soft
-        }
-    print('kg_g.ndata[nodes].shape =', kg_g.ndata['nodes'].shape)
-    print("node types unique:", torch.unique(kg_g.ndata['nodes'][:, 1]))
-    print("max node type:", kg_g.ndata['nodes'][:, 1].max())
+    # for food_id, info in f2c_dict.items():
+    #     compounds = info.get('compounds', [])
+    #     weights = info.get('weights', [])
+
+    #     if not compounds or not weights or len(compounds) != len(weights):
+    #         continue
+    #     if any(math.isnan(w) or math.isinf(w) for w in weights):
+    #         continue
+    #     new_weights = softmax(weights)
+    
+    #     threshold = 1e-6
+    #     filtered = [(c, w) for c, w in zip(compounds, new_weights) if w > threshold]
+
+    #     if not filtered:
+    #         continue
+
+    #     new_compounds, new_weights = zip(*filtered)
+        
+    #     if len(new_compounds) != len(new_weights):
+    #         continue
+
+
+    #     cleaned_f2c[int(food_id)] = {
+    #         'compounds': list(new_compounds),
+    #         'weights': list(new_weights)
+    #     }
+
+    # print(f"[정상] {len(cleaned_f2c)} / {len(f2c_dict)} food_id 유지됨.")
+
+    # all_weights = []
+    # for info in f2c_dict.values():
+    #     weights = info.get('weights', [])
+    #     if not weights or len(info.get('compounds', [])) != len(weights):
+    #         continue
+    #     all_weights.extend(weights)
+    # if all_weights:
+    #     min_w = min(all_weights)
+    #     max_w = max(all_weights)
+    #     print(f"[✓] 전체 weight 값의 범위: min = {min_w:.8f}, max = {max_w:.8f}")
+    # else:
+    #     print("[!] 유효한 weight 값이 없음.")
+
+    print(f2c_dict[97410])
 
     return kg_g.to(device), smiles_list, f2c_dict
 

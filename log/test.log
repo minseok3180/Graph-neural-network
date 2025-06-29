@@ -1,3 +1,4 @@
+nohup: ignoring input
 running on cuda:0
 {'compounds': [661], 'weights': [1.0]}
 HetDDI(
@@ -53144,3 +53145,60 @@ fold:0 epoch:66        valid loss:0.664536, valid acc:83.767, valid f1:60.938, v
 [1;31mEarlyStopping counter: 4 out of 50[0m
 [84.03704991105568, 61.27126542782821, 58.308045840209445, 70.30083540428363, 82.00152730201475]
 ====================================================================================================
+self.nodes_fc[0]: tensor([ 0.0569, -0.0927], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([15, 300])
+nodes_feat.shape: torch.Size([98743, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+self.nodes_fc[0]: tensor([-0.1295,  0.0408], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([15, 300])
+nodes_feat.shape: torch.Size([98743, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+self.nodes_fc[0]: tensor([ 0.1343, -0.0064], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([15, 300])
+nodes_feat.shape: torch.Size([98743, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+self.nodes_fc[0]: tensor([0.1173, 0.0618], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([88, 300])
+nodes_feat.shape: torch.Size([47600, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+self.nodes_fc[0]: tensor([ 0.0379, -0.0733], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([88, 300])
+nodes_feat.shape: torch.Size([47600, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+self.nodes_fc[0]: tensor([ 0.0906, -0.1241], device='cuda:0', grad_fn=<SliceBackward0>)
+NaN in self.nodes_fc[0]: tensor(False, device='cuda:0')
+Inf in self.nodes_fc[0]: tensor(False, device='cuda:0')
+self.nodes_fc.shape: torch.Size([88, 300])
+nodes_feat.shape: torch.Size([47600, 300])
+self.nodes_attn.shape: torch.Size([1, 300])
+nodes_feat device: cuda:0
+self.nodes_attn device: cuda:0
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+output.shape: torch.Size([32768, 86])
+ty.shape: torch.Size([32768])
+ty.min(): 0
+ty.max(): 85
+fold:0 epoch:67 step:0 train loss:0.396877, train acc:87.680, train f1:87.014, train precision:87.834, train recall:87.305, train kappa:87.208

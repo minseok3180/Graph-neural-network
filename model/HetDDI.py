@@ -77,13 +77,14 @@ class HetDDI(nn.Module):
             self.decoder = Mlp(self.kg_size, self.mol_size, class_num=class_num)
 
     def forward(self, left, right, f2c):
-
+        
         def resolve_entity(idx):
             if idx < 90000:
                 return mol_emb[idx]
             else:
-                cids = f2c[idx]['compound_ids']  # [N]
-                ws = f2c[idx]['weights']         # [N]
+                cids = f2c[idx]['compounds']  # [N]
+                ws = torch.tensor(f2c[idx]['weights'], device=mol_emb.device, dtype=mol_emb.dtype)
+
                 compound_vecs = mol_emb[cids]  # [N, D]
                 return (ws.unsqueeze(1) * compound_vecs).sum(dim=0)  # [D]
 
@@ -108,14 +109,18 @@ class HetDDI(nn.Module):
 
         else:
             # kg_emb = checkpoint(self.kg)[:self.drug_num]
-            kg_emb = self.kg()[:self.drug_num]
+            kg_emb = self.kg()
+            print("kg_emb.shape:", kg_emb.shape)
             kg_emb = self.kg_fc(kg_emb)
+            print("kg_emb.shape after fc:", kg_emb.shape)
 
             left_kg_emb = kg_emb[left]
             right_kg_emb = kg_emb[right]
 
             mol_emb = self.mol()
+            print("mol_emb.shape before fc:", mol_emb.shape)
             mol_emb = self.mol_fc(mol_emb)
+            print("mol_emb.shape:", mol_emb.shape)
 
             left_mol_emb = torch.stack([resolve_entity(i.item()) for i in left])
             right_mol_emb = torch.stack([resolve_entity(i.item()) for i in right])

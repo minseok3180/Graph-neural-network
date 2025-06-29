@@ -19,7 +19,8 @@ class KFold(object):
 
         # split data with class
         if self.up_sample:
-            split_class_data = [[] for _ in range(data[:, 2].max()+1)]
+            assert data[:, 2].max() == 85, f"{data[:, 2].max()}"
+            split_class_data = [[] for _ in range(int(data[:, 2].max()) + 1)]
             for item in data:
                 split_class_data[item[-1]].append(item)
             split_class_data = [np.array(class_data) for class_data in split_class_data]
