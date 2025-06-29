@@ -1,0 +1,248 @@
+running on cuda:0
+kg_g.ndata[nodes].shape = torch.Size([98743, 2])
+node types unique: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
+max node type: tensor(14)
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     5],
+        [    1,     5],
+        [    2,     5],
+        ...,
+        [83994,     5],
+        [83995,     5],
+        [83996,     5]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([83997, 2])
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([ 0,  2,  4,  5,  6,  7,  8, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21,
+        22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 39, 41, 42,
+        46, 47, 49, 50, 52, 54, 55, 56, 57, 61, 62, 63, 69, 70, 71, 72, 73, 77,
+        78, 79, 81, 82, 87, 89, 91], device='cuda:0')
+tensor(92, device='cuda:0')
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+nodes: tensor([[    0,     5],
+        [    1,     5],
+        [    2,     5],
+        ...,
+        [83994,     5],
+        [83995,     5],
+        [83996,     5]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([83997, 2])
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([ 0,  2,  4,  5,  6,  7,  8, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21,
+        22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 39, 41, 42,
+        46, 47, 49, 50, 52, 54, 55, 56, 57, 61, 62, 63, 69, 70, 71, 72, 73, 77,
+        78, 79, 81, 82, 87, 89, 91], device='cuda:0')
+tensor(92, device='cuda:0')
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+nodes: tensor([[    0,     5],
+        [    1,     5],
+        [    2,     5],
+        ...,
+        [83994,     5],
+        [83995,     5],
+        [83996,     5]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([83997, 2])
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+tensor([ 0,  2,  4,  5,  6,  7,  8, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21,
+        22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 37, 39, 41, 42,
+        46, 47, 49, 50, 52, 54, 55, 56, 57, 61, 62, 63, 69, 70, 71, 72, 73, 77,
+        78, 79, 81, 82, 87, 89, 91], device='cuda:0')
+tensor(92, device='cuda:0')
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+tensor([    0,     1,     2,  ..., 83994, 83995, 83996], device='cuda:0')
+tensor([5, 5, 5,  ..., 5, 5, 5], device='cuda:0')
+num_types: 92
+HetDDI(
+  (kg): HGNN(
+    (dropout): Dropout(p=0.2, inplace=False)
+    (node_embedding): Embedding(98744, 300)
+    (gat_layers): ModuleList(
+      (0): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (1): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (2): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+    )
+  )
+  (kg_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (mol): Mol(
+    (readout): AvgPooling()
+    (gnn): HGNN(
+      (dropout): Dropout(p=0.2, inplace=False)
+      (node_embedding): Embedding(83998, 300)
+      (gat_layers): ModuleList(
+        (0): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (1): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (2): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+      )
+    )
+  )
+  (mol_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (decoder): Mlp(
+    (fc_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=1200, bias=True)
+      (1): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=1200, out_features=1200, bias=True)
+      (5): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Dropout(p=0.5, inplace=False)
+      (8): Linear(in_features=1200, out_features=1200, bias=True)
+      (9): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (10): ReLU()
+      (11): Dropout(p=0.5, inplace=False)
+    )
+    (output_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=86, bias=False)
+    )
+  )
+)

@@ -1,0 +1,101 @@
+nohup: ignoring input
+running on cuda:0
+  0%|          | 0/1498 [00:00<?, ?it/s]  0%|          | 1/1498 [00:00<17:12,  1.45it/s] 76%|███████▌  | 1136/1498 [00:00<00:00, 1948.81it/s]100%|██████████| 1498/1498 [00:00<00:00, 1826.83it/s]
+kg_g.ndata[nodes].shape = torch.Size([98743, 2])
+node types unique: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])
+max node type: tensor(14)
+tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+nodes: tensor([[    0,     0],
+        [    1,     0],
+        [    2,     0],
+        ...,
+        [98740,    14],
+        [98741,    14],
+        [98742,    14]], device='cuda:0')
+nodes dtype: torch.int64
+nodes shape: torch.Size([98743, 2])
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+       device='cuda:0')
+tensor(15, device='cuda:0')
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+tensor([    0,     1,     2,  ..., 98740, 98741, 98742], device='cuda:0')
+tensor([ 0,  0,  0,  ..., 14, 14, 14], device='cuda:0')
+num_types: 15
+Traceback (most recent call last):
+  File "/workspace/Graph-neural-network/model/HetDDI.py", line 189, in <module>
+    h = node_emb[src]
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.94 GiB (GPU 0; 7.92 GiB total capacity; 3.79 GiB already allocated; 3.78 GiB free; 3.87 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

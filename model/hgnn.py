@@ -10,11 +10,10 @@ class HetConv(nn.Module):
         super(HetConv, self).__init__()
 
         self.nodes = nodes
-        print("nodes:", self.nodes)
-        print("nodes dtype:", self.nodes.dtype)
-        print("nodes shape:", self.nodes.shape)
-        print(self.nodes[:, 0])
-        print(self.nodes[:, 1])
+        # print("nodes dtype:", self.nodes.dtype)
+        # print("nodes shape:", self.nodes.shape)
+        # print("nodes[:, 0]:", self.nodes[:, 0][-5:-1])
+        # print("nodes[:, 1]:", self.nodes[:, 1][-5:-1])
         self.edges = torch.arange(0, edges.max() + 1).to(nodes.device)
         # edge_dim = 16
         edge_dim = num_hidden
@@ -30,26 +29,11 @@ class HetConv(nn.Module):
             self.bn = None
         self.activation = activation
         self.leaky_relu = nn.LeakyReLU(negative_slope)
-        print(nodes[:, 1])
-        print(torch.unique(nodes[:, 1]).sort().values)
-        print(nodes[:, 1].max() + 1)
-        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))
-        print(self.nodes[:, 0])
-        print(self.nodes[:, 1])
-        num_types = int(self.nodes[:, 1].max().item()) + 1
-        print("num_types:", num_types)
-        self.nodes_fc = nn.Parameter(torch.FloatTensor(
-            size=(num_types, num_hidden)
-        ))  #####
 
-        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))  #####
-        print(self.nodes[:, 0])
-        print(self.nodes[:, 1])
+        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))
         num_types = int(self.nodes[:, 1].max().item()) + 1
-        print("num_types:", num_types)
-        self.nodes_fc = nn.Parameter(torch.FloatTensor(
-            size=(num_types, num_hidden)
-        ))  #####
+        # print("num_types:", num_types)
+        self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(num_types, num_hidden)))  #####
 
         # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(1, num_hidden)))
         # self.nodes_fc = self.nodes_fc[self.nodes[:, 1]]
