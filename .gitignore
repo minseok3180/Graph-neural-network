@@ -3,6 +3,7 @@
 # *.log
 *.pth
 *.pkl
+*.pt
 
 # Dummy data
 **/dummy/

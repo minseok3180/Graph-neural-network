@@ -52,20 +52,20 @@ class HetConv(nn.Module):
 
     def forward(self, g, nodes_feat, edges_feat):
         g = g.local_var()
-        print("self.nodes_fc[0]:", self.nodes_fc[0][:2])
-        print("NaN in self.nodes_fc[0]:", torch.isnan(self.nodes_fc[0]).any())
-        print("Inf in self.nodes_fc[0]:", torch.isinf(self.nodes_fc[0]).any())
-        print("self.nodes_fc.shape:", self.nodes_fc.shape)
+        # print("self.nodes_fc[0]:", self.nodes_fc[0][:2])
+        # print("NaN in self.nodes_fc[0]:", torch.isnan(self.nodes_fc[0]).any())
+        # print("Inf in self.nodes_fc[0]:", torch.isinf(self.nodes_fc[0]).any())
+        # print("self.nodes_fc.shape:", self.nodes_fc.shape)
 
         nodes_feat = nodes_feat * self.nodes_fc[0]  #####
         # nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]  #####
         # → self.nodes_fc: [num_types, dim]  &  self.nodes[:, 1]: [num_nodes]
         
         ###################### issue
-        print("nodes_feat.shape:", nodes_feat.shape)
-        print("self.nodes_attn.shape:", self.nodes_attn.shape)
-        print("nodes_feat device:", nodes_feat.device)
-        print("self.nodes_attn device:", self.nodes_attn.device)
+        # print("nodes_feat.shape:", nodes_feat.shape)
+        # print("self.nodes_attn.shape:", self.nodes_attn.shape)
+        # print("nodes_feat device:", nodes_feat.device)
+        # print("self.nodes_attn device:", self.nodes_attn.device)
         assert not torch.isnan(nodes_feat).any(), "nodes_feat contains NaNs"
         assert not torch.isnan(self.nodes_attn).any(), "self.nodes_attn contains NaNs"
         g.ndata.update({'feat': nodes_feat,

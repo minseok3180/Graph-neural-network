@@ -106,7 +106,7 @@ def load_data(data_path='./data', device=torch.device('cpu')):
     # else:
     #     print("[!] 유효한 weight 값이 없음.")
 
-    print(f2c_dict[97410])
+    # print(f2c_dict[97410])
 
     return kg_g.to(device), smiles_list, f2c_dict
 
@@ -176,6 +176,50 @@ def get_train_test(data_path='./data', fold_num=5, label_type='multi_class', con
         test_sample[fold] = np.concatenate([test, test_neg])
 
     return train_sample, test_sample
+
+
+# inference용 모든 데이터 가져오는 dataloader
+def get_all_data(data_path='./data', label_type='multi_class', condition='s1'):
+    sample = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
+
+    if label_type not in ['binary_class', 'multi_label']:
+        return sample  # multi_class는 pos만 사용
+
+    ddi_data = pd.read_csv(os.path.join(data_path, 'ddi.tsv'), sep='\t').values
+    ddi_set = set('\t'.join(map(str, row)) for row in (ddi_data if label_type == 'multi_label' else ddi_data[:, :2]))
+
+    if condition == 's1':
+        all_drugs = np.arange(sample[:, :2].max() + 1)
+    else:
+        all_drugs = np.unique(sample[:, :2])
+
+    def generate_neg(pos, drugs):
+        neg = []
+        for i in tqdm(range(len(pos)), desc='Generating inference negative samples'):
+            while True:
+                d1, d2 = np.random.choice(drugs, 2, replace=False)
+                if label_type == 'binary_class':
+                    key1, key2 = f"{d1}\t{d2}", f"{d2}\t{d1}"
+                else:
+                    key1 = f"{d1}\t{d2}\t{pos[i][2]}"
+                    key2 = f"{d2}\t{d1}\t{pos[i][2]}"
+                if key1 not in ddi_set and key2 not in ddi_set:
+                    neg.append([d1, d2, 0])
+                    break
+        return np.array(neg, dtype=pos.dtype)
+
+    sample[:, 2] = 1  # positive
+    neg_sample = generate_neg(sample, all_drugs)
+
+    if label_type == 'multi_label':
+        sample = np.concatenate([sample, sample[:, 2:]], axis=1)
+        sample[:, 2] = 1
+        neg_sample = np.concatenate([neg_sample, np.zeros((len(neg_sample), 1), dtype=neg_sample.dtype)], axis=1)
+        neg_sample[:, 3] = sample[:, 3]  # label 맞춰줌
+
+    all_data = np.concatenate([sample, neg_sample])
+    return all_data
+
 
 if __name__ == '__main__':
     os.chdir('../')

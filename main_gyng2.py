@@ -11,6 +11,7 @@ from utils.pytorchtools import EarlyStopping
 from utils.logger import Logger
 import os
 from tdc.utils import get_label_map   # DrugBank interaction 라벨 정보 불러오기
+from easydict import EasyDict
 
 def run(args):
     np.random.seed(42)
@@ -212,38 +213,71 @@ def run(args):
 
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(description='')
-    ap.add_argument('--batch_size', type=int, default=2 ** 15)
-    ap.add_argument('--fold_num', type=int, default=5)
-    ap.add_argument('--hidden_dim', type=int, default=300, help='Dimension of the node hidden state. Default is 300.')
-    ap.add_argument('--num_layer', type=int, default=3)
-    ap.add_argument('--epoch', type=int, default=1000, help='Number of epochs.')
-    ap.add_argument('--patience', type=int, default=50)
-    ap.add_argument('--lr', type=float, default=1e-3)
-    ap.add_argument('--weight_decay', type=float, default=1e-5)
+    # ap = argparse.ArgumentParser(description='')
+    # ap.add_argument('--batch_size', type=int, default=2 ** 15)
+    # ap.add_argument('--fold_num', type=int, default=5)
+    # ap.add_argument('--hidden_dim', type=int, default=300, help='Dimension of the node hidden state. Default is 300.')
+    # ap.add_argument('--num_layer', type=int, default=3)
+    # ap.add_argument('--epoch', type=int, default=1000, help='Number of epochs.')
+    # ap.add_argument('--patience', type=int, default=50)
+    # ap.add_argument('--lr', type=float, default=1e-3)
+    # ap.add_argument('--weight_decay', type=float, default=1e-5)
 
-    ap.add_argument('--label_type', type=str, choices=['multi_class', 'binary_class', 'multi_label'],
-                    default='binary_class')
-    ap.add_argument('--condition', type=str, choices=['s1', 's2', 's3'], default='s1')
-    ap.add_argument('--mode', type=str, choices=['only_kg', 'only_mol', 'concat'], default='concat')
-    ap.add_argument('--data_path', type=str, default='./data')
-    ap.add_argument('--kg_name', type=str, default='DRKG')
-    ap.add_argument('--ddi_name', type=str, choices=['DrugBank', "TWOSIDES"], default='DrugBank')
+    # ap.add_argument('--label_type', type=str, choices=['multi_class', 'binary_class', 'multi_label'],
+    #                 default='binary_class')
+    # ap.add_argument('--condition', type=str, choices=['s1', 's2', 's3'], default='s1')
+    # ap.add_argument('--mode', type=str, choices=['only_kg', 'only_mol', 'concat'], default='concat')
+    # ap.add_argument('--data_path', type=str, default='./data')
+    # ap.add_argument('--kg_name', type=str, default='DRKG')
+    # ap.add_argument('--ddi_name', type=str, choices=['DrugBank', "TWOSIDES"], default='DrugBank')
 
-    args = ap.parse_args(args=[])
-    print(args)
+    # args = ap.parse_args(args=[])
+    # print(args)
 
-    terminal = sys.stdout
-    log_file = './log/ddi-dataset_{} label-type_{} mode_{} condition_{}.txt'. \
-        format(args.hidden_dim, args.label_type, args.mode,args.condition)
-    sys.stdout = Logger(log_file, terminal)
+    # terminal = sys.stdout
+    # log_file = './log/ddi-dataset_{} label-type_{} mode_{} condition_{}.txt'. \
+    #     format(args.hidden_dim, args.label_type, args.mode,args.condition)
+    # sys.stdout = Logger(log_file, terminal)
 
+    # import warnings
+    # warnings.filterwarnings("ignore", category=UserWarning)
+
+    # device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    # # device = torch.device('cpu')
+    # print('running on', device)
+
+    # run(args)
+
+    args = EasyDict({
+        'batch_size': 2 ** 15,
+        'fold_num': 5,
+        'hidden_dim': 300,
+        'num_layer': 3,
+        'epoch': 100,
+        'patience': 50,
+        'lr': 1e-3,
+        'weight_decay': 1e-5,
+        'label_type': 'multi_class',  # binary_class
+        'condition': 's1',
+        'mode': 'concat',
+        
+        'data_path': './data',
+        'kg_name': 'FOODRKG',
+        'ddi_name': 'DrugBank',
+    })
+
+    # print 출력을 터미널과 로그 파일에 동시에 기록하도록 설정 & warning 무시
+    sys.stdout = Logger(
+        f'./log/ddi-dataset_{args.hidden_dim} '
+        f'label-type_{args.label_type} '
+        f'mode_{args.mode} '
+        f'condition_{args.condition}.txt',
+        sys.stdout
+    )
     import warnings
     warnings.filterwarnings("ignore", category=UserWarning)
 
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    # device = torch.device('cpu')
-    print('running on', device)
+
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'); print('running on', device)
 
     run(args)
-

@@ -1,0 +1,8 @@
+nohup: ignoring input
+running on cuda:0
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+
+[1;34mInference result saved to: results/DrugBank_multi_class_concat_s1_20250630_195157.csv[0m

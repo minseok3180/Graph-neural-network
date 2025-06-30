@@ -1,0 +1,51 @@
+nohup: ignoring input
+running on cuda:0
+terminate called after throwing an instance of 'c10::Error'
+  what():  CUDA error: out of memory
+Exception raised from c10_cuda_check_implementation at ../c10/cuda/CUDAException.cpp:31 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x57 (0x7fb9fc8a8457 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::string const&) + 0x64 (0x7fb9fc8723ec in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10.so)
+frame #2: c10::cuda::c10_cuda_check_implementation(std::string const&, std::string const&, int, bool) + 0xb4 (0x7fb9fc948c64 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10_cuda.so)
+frame #3: <unknown function> + 0x42ba7 (0x7fb9fc944ba7 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10_cuda.so)
+frame #4: <unknown function> + 0x43963 (0x7fb9fc945963 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10_cuda.so)
+frame #5: <unknown function> + 0x45158 (0x7fb9fc947158 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10_cuda.so)
+frame #6: c10::cuda::CUDACachingAllocator::raw_alloc_with_stream(unsigned long, CUstream_st*) + 0x4c (0x7fb9fc922d4c in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/torch/lib/libc10_cuda.so)
+frame #7: CUDARawAlloc + 0x30 (0x7fb94b005831 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/tensoradapter/pytorch/libtensoradapter_pytorch_1.13.1.so)
+frame #8: dgl::runtime::CUDADeviceAPI::AllocDataSpace(DGLContext, unsigned long, unsigned long, DGLDataType) + 0x21e (0x7fb95b0bc54e in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #9: dgl::runtime::NDArray::Empty(std::vector<long, std::allocator<long> >, DGLDataType, DGLContext) + 0x170 (0x7fb95af33ef0 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #10: dgl::runtime::NDArray::CopyTo(DGLContext const&) const + 0xc3 (0x7fb95af6e1d3 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #11: dgl::UnitGraph::CopyTo(std::shared_ptr<dgl::BaseHeteroGraph>, DGLContext const&) + 0x3ef (0x7fb95b07b8cf in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #12: dgl::HeteroGraph::CopyTo(std::shared_ptr<dgl::BaseHeteroGraph>, DGLContext const&) + 0xf6 (0x7fb95af7f636 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #13: <unknown function> + 0x78e9d6 (0x7fb95af8e9d6 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #14: DGLFuncCall + 0x48 (0x7fb95af15f88 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/libdgl.so)
+frame #15: <unknown function> + 0x153f3 (0x7fb94ac153f3 in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/_ffi/_cy3/core.cpython-310-x86_64-linux-gnu.so)
+frame #16: <unknown function> + 0x15c0b (0x7fb94ac15c0b in /workspace/Graph-neural-network/hetddi/lib/python3.10/site-packages/dgl/_ffi/_cy3/core.cpython-310-x86_64-linux-gnu.so)
+frame #17: _PyObject_MakeTpCall + 0x25b (0x558c3dd8475b in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #18: _PyEval_EvalFrameDefault + 0x59d7 (0x558c3dd7dc47 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #19: <unknown function> + 0x198791 (0x558c3dd9b791 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #20: _PyEval_EvalFrameDefault + 0x5642 (0x558c3dd7d8b2 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #21: _PyFunction_Vectorcall + 0x7c (0x558c3dd8e66c in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #22: _PyEval_EvalFrameDefault + 0x804 (0x558c3dd78a74 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #23: _PyFunction_Vectorcall + 0x7c (0x558c3dd8e66c in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #24: _PyEval_EvalFrameDefault + 0x18d3 (0x558c3dd79b43 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #25: _PyFunction_Vectorcall + 0x7c (0x558c3dd8e66c in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #26: _PyEval_EvalFrameDefault + 0x6bf (0x558c3dd7892f in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #27: <unknown function> + 0x259f56 (0x558c3de5cf56 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #28: PyEval_EvalCode + 0x86 (0x558c3de5ce26 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #29: <unknown function> + 0x280808 (0x558c3de83808 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #30: <unknown function> + 0x27b00f (0x558c3de7e00f in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #31: <unknown function> + 0x2805a5 (0x558c3de835a5 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #32: _PyRun_SimpleFileObject + 0x1a8 (0x558c3de82b88 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #33: _PyRun_AnyFileObject + 0x47 (0x558c3de82867 in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #34: Py_RunMain + 0x2be (0x558c3de76e5e in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #35: Py_BytesMain + 0x2d (0x558c3de50e6d in /workspace/Graph-neural-network/hetddi/bin/python)
+frame #36: <unknown function> + 0x29d90 (0x7fba068d6d90 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #37: __libc_start_main + 0x80 (0x7fba068d6e40 in /lib/x86_64-linux-gnu/libc.so.6)
+frame #38: _start + 0x25 (0x558c3de50d65 in /workspace/Graph-neural-network/hetddi/bin/python)
+
+
+LIBXSMM_VERSION: main-1.17-3659 (25693771)
+LIBXSMM_TARGET: hsw [Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz]
+Registry and code: 13 MB
+Command: /workspace/Graph-neural-network/hetddi/bin/python /workspace/Graph-neural-network/main_gyng2.py 
+Uptime: 2.413651 s
