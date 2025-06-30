@@ -182,3 +182,135 @@ kg_emb.shape: torch.Size([98743, 300])
 kg_emb.shape after fc: torch.Size([98743, 300])
 mol_emb.shape before fc: torch.Size([1706, 300])
 mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:10 train loss:3.496513, train acc:21.463, train f1:6.493, train precision:10.387, train recall:6.838, train kappa:13.133
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:11 train loss:3.438478, train acc:21.870, train f1:7.414, train precision:13.142, train recall:7.698, train kappa:14.052
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0        valid loss:3.354579, valid acc:26.925, valid f1:2.248, valid precision:3.002, valid recall:3.013, valid kappa:11.449
+None
+====================================================================================================
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:0 train loss:3.333739, train acc:24.277, train f1:8.779, train precision:14.383, train recall:9.038, train kappa:16.716
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:1 train loss:3.278725, train acc:24.881, train f1:9.693, train precision:15.834, train recall:10.027, train kappa:17.482
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:2 train loss:3.197378, train acc:26.782, train f1:11.519, train precision:15.502, train recall:11.867, train kappa:19.736
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:3 train loss:3.134800, train acc:27.585, train f1:11.434, train precision:16.984, train recall:12.339, train kappa:20.566
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:4 train loss:3.113253, train acc:27.307, train f1:11.529, train precision:17.275, train recall:12.851, train kappa:20.472
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:5 train loss:3.023344, train acc:28.549, train f1:13.094, train precision:21.378, train recall:13.875, train kappa:21.784
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:6 train loss:2.969625, train acc:28.723, train f1:13.860, train precision:20.410, train recall:14.507, train kappa:22.224
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:7 train loss:2.917740, train acc:29.779, train f1:15.417, train precision:23.650, train recall:15.598, train kappa:23.517
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:8 train loss:2.846430, train acc:30.609, train f1:16.716, train precision:26.970, train recall:16.502, train kappa:24.509
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:9 train loss:2.792665, train acc:31.937, train f1:18.198, train precision:28.977, train recall:17.666, train kappa:26.112
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:10 train loss:2.737561, train acc:32.471, train f1:19.428, train precision:28.891, train recall:18.796, train kappa:26.966
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1 step:11 train loss:2.707154, train acc:32.854, train f1:20.617, train precision:32.865, train recall:20.523, train kappa:27.604
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:1        valid loss:3.927294, valid acc:17.529, valid f1:2.086, valid precision:3.379, valid recall:3.057, valid kappa:5.540
+None
+====================================================================================================
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:0 train loss:2.635713, train acc:34.134, train f1:22.166, train precision:31.563, train recall:21.305, train kappa:29.054
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:1 train loss:2.616971, train acc:34.579, train f1:23.939, train precision:31.757, train recall:23.200, train kappa:29.918
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:2 train loss:2.519227, train acc:36.670, train f1:26.078, train precision:36.478, train recall:25.671, train kappa:32.302
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:3 train loss:2.473135, train acc:38.104, train f1:27.563, train precision:34.269, train recall:27.089, train kappa:33.900
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:4 train loss:2.424838, train acc:38.791, train f1:29.188, train precision:35.975, train recall:28.758, train kappa:34.811
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:5 train loss:2.416216, train acc:38.702, train f1:29.303, train precision:36.907, train recall:28.725, train kappa:34.818
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:6 train loss:2.378179, train acc:39.487, train f1:30.787, train precision:39.274, train recall:30.113, train kappa:35.787
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:2 step:7 train loss:2.315157, train acc:40.726, train f1:32.312, train precision:40.257, train recall:31.335, train kappa:37.197
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])

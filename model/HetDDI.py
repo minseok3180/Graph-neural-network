@@ -202,3 +202,4 @@ if __name__ == '__main__':
 
     kg_model.eval()
     torch.save(kg_model.state_dict(), './kg_weight.pth')
+    
