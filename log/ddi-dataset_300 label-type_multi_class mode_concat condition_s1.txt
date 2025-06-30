@@ -1,0 +1,184 @@
+running on cuda:0
+▶ Experiment Parameters
+     batch_size: 32768
+       fold_num: 5
+     hidden_dim: 300
+      num_layer: 3
+          epoch: 100
+       patience: 50
+             lr: 0.001
+   weight_decay: 1e-05
+     label_type: multi_class
+      condition: s1
+           mode: concat
+      data_path: ./data
+        kg_name: FOODRKG
+       ddi_name: DrugBank
+            set: all
+train setting...
+HetDDI(
+  (kg): HGNN(
+    (dropout): Dropout(p=0.2, inplace=False)
+    (node_embedding): Embedding(98744, 300)
+    (gat_layers): ModuleList(
+      (0): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (1): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+      (2): HetConv(
+        (edge_embedding): Embedding(109, 300)
+        (bn): Sequential(
+          (0): Linear(in_features=300, out_features=300, bias=True)
+          (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (leaky_relu): LeakyReLU(negative_slope=0.02)
+      )
+    )
+  )
+  (kg_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (mol): Mol(
+    (readout): AvgPooling()
+    (gnn): HGNN(
+      (dropout): Dropout(p=0.2, inplace=False)
+      (node_embedding): Embedding(47601, 300)
+      (gat_layers): ModuleList(
+        (0): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (1): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+        (2): HetConv(
+          (edge_embedding): Embedding(5, 300)
+          (bn): Sequential(
+            (0): Linear(in_features=300, out_features=300, bias=True)
+            (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (leaky_relu): LeakyReLU(negative_slope=0.02)
+        )
+      )
+    )
+  )
+  (mol_fc): Sequential(
+    (0): Linear(in_features=300, out_features=300, bias=True)
+    (1): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): Dropout(p=0.1, inplace=False)
+    (3): ReLU()
+    (4): Linear(in_features=300, out_features=300, bias=True)
+    (5): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): Dropout(p=0.1, inplace=False)
+    (7): ReLU()
+    (8): Linear(in_features=300, out_features=300, bias=True)
+    (9): BatchNorm1d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): Dropout(p=0.1, inplace=False)
+    (11): ReLU()
+  )
+  (decoder): Mlp(
+    (fc_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=1200, bias=True)
+      (1): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=1200, out_features=1200, bias=True)
+      (5): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (6): ReLU()
+      (7): Dropout(p=0.5, inplace=False)
+      (8): Linear(in_features=1200, out_features=1200, bias=True)
+      (9): BatchNorm1d(1200, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (10): ReLU()
+      (11): Dropout(p=0.5, inplace=False)
+    )
+    (output_layer): Sequential(
+      (0): Linear(in_features=1200, out_features=86, bias=False)
+    )
+  )
+)
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:0 train loss:4.547227, train acc:1.819, train f1:0.891, train precision:1.156, train recall:1.209, train kappa:0.091
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:1 train loss:4.247983, train acc:11.148, train f1:1.319, train precision:1.746, train recall:1.955, train kappa:2.700
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:2 train loss:4.023349, train acc:14.035, train f1:1.689, train precision:1.979, train recall:2.444, train kappa:4.594
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:3 train loss:3.910156, train acc:15.726, train f1:2.079, train precision:3.696, train recall:2.956, train kappa:6.032
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:4 train loss:3.856239, train acc:16.904, train f1:2.976, train precision:5.096, train recall:3.612, train kappa:6.830
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:5 train loss:3.819167, train acc:16.537, train f1:3.476, train precision:5.160, train recall:3.942, train kappa:7.453
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:6 train loss:3.729437, train acc:18.063, train f1:4.357, train precision:7.135, train recall:4.768, train kappa:8.786
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:7 train loss:3.688593, train acc:18.942, train f1:4.694, train precision:8.371, train recall:5.088, train kappa:9.907
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:8 train loss:3.614374, train acc:20.044, train f1:5.152, train precision:11.016, train recall:5.551, train kappa:11.451
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])
+fold:0 epoch:0 step:9 train loss:3.553186, train acc:20.660, train f1:5.810, train precision:9.811, train recall:6.007, train kappa:12.386
+kg_emb.shape: torch.Size([98743, 300])
+kg_emb.shape after fc: torch.Size([98743, 300])
+mol_emb.shape before fc: torch.Size([1706, 300])
+mol_emb.shape: torch.Size([1706, 300])

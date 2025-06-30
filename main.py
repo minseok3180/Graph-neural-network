@@ -135,7 +135,7 @@ def inference(args):
         args.mode, label_dims[args.label_type], args.condition
     ).to('cpu')
 
-    ckpt_path = os.path.join("checkpoints", args.ddi_name, args.label_type, args.mode, args.condition, "fold_0_model_best.pt")
+    ckpt_path = os.path.join("checkpoints", args.ddi_name, args.label_type, args.mode, args.condition, "fold_4_model_best.pt")
     if not os.path.exists(ckpt_path):
         raise FileNotFoundError(f"[!] Checkpoint not found: {ckpt_path}")
 

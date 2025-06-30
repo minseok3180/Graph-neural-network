@@ -10,10 +10,6 @@ class HetConv(nn.Module):
         super(HetConv, self).__init__()
 
         self.nodes = nodes
-        # print("nodes dtype:", self.nodes.dtype)
-        # print("nodes shape:", self.nodes.shape)
-        # print("nodes[:, 0]:", self.nodes[:, 0][-5:-1])
-        # print("nodes[:, 1]:", self.nodes[:, 1][-5:-1])
         self.edges = torch.arange(0, edges.max() + 1).to(nodes.device)
         # edge_dim = 16
         edge_dim = num_hidden
@@ -29,12 +25,8 @@ class HetConv(nn.Module):
             self.bn = None
         self.activation = activation
         self.leaky_relu = nn.LeakyReLU(negative_slope)
-
-        # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(nodes[:, 1].max() + 1, num_hidden)))
         num_types = int(self.nodes[:, 1].max()) + 1
-        # print("num_types:", num_types)
         self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(num_types, num_hidden)))  #####
-
         # self.nodes_fc = nn.Parameter(torch.FloatTensor(size=(1, num_hidden)))
         # self.nodes_fc = self.nodes_fc[self.nodes[:, 1]]
         self.edges_fc = nn.Parameter(torch.FloatTensor(size=(edges.max() + 1, edge_dim)))
@@ -52,20 +44,9 @@ class HetConv(nn.Module):
 
     def forward(self, g, nodes_feat, edges_feat):
         g = g.local_var()
-        # print("self.nodes_fc[0]:", self.nodes_fc[0][:2])
-        # print("NaN in self.nodes_fc[0]:", torch.isnan(self.nodes_fc[0]).any())
-        # print("Inf in self.nodes_fc[0]:", torch.isinf(self.nodes_fc[0]).any())
-        # print("self.nodes_fc.shape:", self.nodes_fc.shape)
-
         nodes_feat = nodes_feat * self.nodes_fc[0]  #####
         # nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]  #####
         # → self.nodes_fc: [num_types, dim]  &  self.nodes[:, 1]: [num_nodes]
-        
-        ###################### issue
-        # print("nodes_feat.shape:", nodes_feat.shape)
-        # print("self.nodes_attn.shape:", self.nodes_attn.shape)
-        # print("nodes_feat device:", nodes_feat.device)
-        # print("self.nodes_attn device:", self.nodes_attn.device)
         assert not torch.isnan(nodes_feat).any(), "nodes_feat contains NaNs"
         assert not torch.isnan(self.nodes_attn).any(), "self.nodes_attn contains NaNs"
         g.ndata.update({'feat': nodes_feat,

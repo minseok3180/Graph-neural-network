@@ -32,8 +32,6 @@ class Mol(nn.Module):
         self.gnn = HGNN(self.mol_g, self.mol_g.edata['bond_type'], nodes, num_hidden, num_layer).to(device)
         if not condition == 's1':
             self.gnn.node_embedding = nn.Embedding(self.gnn.nodes[:, 0].max() + 2, num_hidden)
-            # 각 food에 포함된 compound에 대하여 gnn.node_embedding값을 가중함하여 다시 저장
-
             self.gnn.load_state_dict(torch.load('./mol_weight.pth'))
 
     def forward(self):
