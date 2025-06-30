@@ -47,8 +47,6 @@ class HetConv(nn.Module):
         nodes_feat = nodes_feat * self.nodes_fc[0]  #####
         # nodes_feat = nodes_feat * self.nodes_fc[self.nodes[:, 1]]  #####
         # → self.nodes_fc: [num_types, dim]  &  self.nodes[:, 1]: [num_nodes]
-        assert not torch.isnan(nodes_feat).any(), "nodes_feat contains NaNs"
-        assert not torch.isnan(self.nodes_attn).any(), "self.nodes_attn contains NaNs"
         g.ndata.update({'feat': nodes_feat,
                         'ft': (nodes_feat * self.nodes_attn).sum(dim=-1)})
         g.apply_edges(fn.u_add_v('ft', 'ft', 'e'))

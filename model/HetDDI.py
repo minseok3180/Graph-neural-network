@@ -110,17 +110,13 @@ class HetDDI(nn.Module):
         else:
             # kg_emb = checkpoint(self.kg)[:self.drug_num]
             kg_emb = self.kg()
-            print("kg_emb.shape:", kg_emb.shape)
             kg_emb = self.kg_fc(kg_emb)
-            print("kg_emb.shape after fc:", kg_emb.shape)
 
             left_kg_emb = kg_emb[left]
             right_kg_emb = kg_emb[right]
 
             mol_emb = self.mol()
-            print("mol_emb.shape before fc:", mol_emb.shape)
             mol_emb = self.mol_fc(mol_emb)
-            print("mol_emb.shape:", mol_emb.shape)
 
             left_mol_emb = torch.stack([resolve_entity(i.item()) for i in left])
             right_mol_emb = torch.stack([resolve_entity(i.item()) for i in right])
